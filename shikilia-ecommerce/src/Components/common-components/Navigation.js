@@ -7,6 +7,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import CheckIcon from '@material-ui/icons/Check';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Modal from './Modal';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,6 +48,7 @@ function Navigation() {
     const classes = useStyles();
 
     const [searchInput, setSearchInput] = useState();
+    const [modalStatus, setModalStatus] = useState(true);
 
     return (
         <Section backgroundColor="Default">
@@ -58,24 +60,29 @@ function Navigation() {
 
             >
                 {topMenuData.map(topMenu => (
-                    <TargetLink 
-                        key = {topMenu.id}
-                        margin = "2-2-2.5-0"
-                        border = {topMenu.border}
-                    >
-                        {
-                            topMenu.icon === 'FavoriteIcon' ?
-                            <FavoriteIcon className="mr-2 ml-4"/> : <></> &&
-                            topMenu.icon === 'CheckIcon' ?
-                            <CheckIcon className="mr-2 ml-4"/> : <></> &&
-                            topMenu.icon === 'PersonIcon' ?
-                            <PersonIcon className="mr-2 ml-4"/> : <></>
-                        }
-                        {topMenu.title}
-                    </TargetLink>
+                    <React.Fragment>
+                        <TargetLink 
+                            key = {topMenu.id}
+                            margin = "2-2-2.5-0"
+                            border = {topMenu.border}
+                        >
+                            {
+                                topMenu.icon === 'FavoriteIcon' ?
+                                <FavoriteIcon className="mr-2 ml-4"/> : <></> &&
+                                topMenu.icon === 'CheckIcon' ?
+                                <CheckIcon className="mr-2 ml-4"/> : <></> &&
+                                topMenu.icon === 'PersonIcon' ?
+                                <PersonIcon className="mr-2 ml-4"/> : <></>
+                            }
+                            {topMenu.title}
+                        </TargetLink>
+                       
+                    </React.Fragment>
+                    
                 ))}
+                
             </Container>
-
+            <Modal modal="signIn" status={modalStatus}/>
             {/* Logo + Searchbar + Cart */}
             <Container
             >

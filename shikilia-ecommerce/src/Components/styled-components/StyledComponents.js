@@ -1,6 +1,7 @@
-import styled from 'styled-components'
-import { Col, Row, Button, Card } from 'react-bootstrap'
+import styled from 'styled-components';
+import { Col, Row, Button, Card } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
+import Modal from '@material-ui/core/Modal';
 
 
 export const Section = styled.section`
@@ -122,3 +123,5 @@ export const Cards = styled(Card)``;
 
 
 export const InputField = styled(TextField)``;
+
+export const Modals =styled(Modal)``;

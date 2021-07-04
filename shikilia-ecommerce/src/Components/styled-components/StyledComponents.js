@@ -28,7 +28,9 @@ export const Container = styled.div`
         backgroundColor === "Default" ? "#172b4d" : 'transparent' &&
         backgroundColor === "primary" ? "#5e72e4" : 'transparent'
     )};
-    width: 100% !important;
+    width: ${({width}) => (
+        width === "850" ? "850px !important" : "100%"
+    )};
     
 `;
 
@@ -46,6 +48,9 @@ export const Title3 = styled.h3``;
 
 
 export const Placeholder = styled.p``;
+
+
+export const Form = styled.form``;
 
 
 export const TargetLink = styled.a`
@@ -102,8 +107,13 @@ export const Column = styled(Col)`
 export const Buttons = styled(Button)`
     border: none;
     background: ${({background}) => (
-        background === "transparent" ? "transparent" : "transparent"
+        background === "transparent" ? "transparent" : "transparent"&&
+        background === "Default" ? "#172b4d" : "transparent"
     )};
+    color: ${({color}) => (
+        color === "Default" ? "#172b4d" : "white"
+    )};
+    
     transition: .3s all;
 
     &:hover {
@@ -124,4 +134,6 @@ export const Cards = styled(Card)``;
 
 export const InputField = styled(TextField)``;
 
-export const Modals =styled(Modal)``;
+export const Modals =styled(Modal)`
+    
+`;

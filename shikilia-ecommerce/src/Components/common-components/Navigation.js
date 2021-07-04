@@ -7,7 +7,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import CheckIcon from '@material-ui/icons/Check';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import Modal from './Modal';
+import ModalCard from './Modal';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -75,14 +75,16 @@ function Navigation() {
                                 <PersonIcon className="mr-2 ml-4"/> : <></>
                             }
                             {topMenu.title}
+
+                            
                         </TargetLink>
-                       
+                        <ModalCard modal="signIn" status={modalStatus}/>
                     </React.Fragment>
                     
                 ))}
                 
             </Container>
-            <Modal modal="signIn" status={modalStatus}/>
+            
             {/* Logo + Searchbar + Cart */}
             <Container
             >

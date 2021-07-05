@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { TargetLink, Form, Rows, Buttons, Container, Modals, Column, Title1 } from '../styled-components/StyledComponents';
+import { Image, Placeholder, TargetLink, Form, Rows, Buttons, Container, Modals, Column, Title1 } from '../styled-components/StyledComponents';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
@@ -9,6 +9,8 @@ import { Checkbox, FormControl, FormControlLabel, IconButton, Input, InputLabel,
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { socialLogins } from '../../Data/modalData';
+// import socialLogins from '../../Data/modalData'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,38 +28,42 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function ModalCard(modal, status) {
+function ModalCard(modal, status, onClose) {
     const classes = useStyles();
 
 
-    const [open, setOpen] = useState(true);
+    // const [open, setOpen] = useState(status);
+    const [name, setName] = useState();
     const [email, setEmail] = useState();
-    const [password, setPassword] = useState()
+    const [modalType, setModalType] = useState(modal);
+    const [password, setPassword] = useState();
+    const [confirmPassword, setConfirmPassword] = useState();
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
+    const [privacyPolicy, setPrivacyPolicy] = useState(false);
 
 
     return (
         <React.Fragment>
             {
-                open ? 
+                modalType === "signIn" ? 
                 (
                     <Modals
                         aria-labelledby="transition-modal-title"
                         aria-describedby="transition-modal-description"
                         className={classes.modal}
-                        open={open}
-                        onClose={() => setOpen(false)}
+                        open={status}
+                        onClose={onClose}
                         closeAfterTransition
                         BackdropComponent={Backdrop}
                         BackdropProps={{
                                 timeout: 500,
                         }}
                     >
-                        <Fade in={open}>
+                        <Fade in={status}>
                             <div className={classes.paper}>
                                 <Container display="flex" justifyContent="end">
-                                    <Buttons color="Default" hoverColor="primary" onClick={() => setOpen(false)}>
+                                    <Buttons color="Default" hoverColor="primary" onClick={onClose}>
                                         <CloseIcon/> 
                                     </Buttons>
                                 </Container>
@@ -117,7 +123,7 @@ function ModalCard(modal, status) {
 
                                                         <Column md={6} padding="modal">
                                                             <Container>
-                                                                <TargetLink color="primary" hoverColor="Default" transformation={false}>Forgot Password?</TargetLink>
+                                                                <TargetLink color="Default" hoverColor="primary" margin="1-0-0-0" transformation={false}>Forgot Password?</TargetLink>
                                                             </Container>
                                                         </Column>
                                                     </Rows> 
@@ -125,29 +131,250 @@ function ModalCard(modal, status) {
 
                                                 <Container marginTop="2">
                                                     <Buttons 
-                                                        hoverColor="primary"
                                                         background="Default"
+                                                        hoverBackground = "primary"
                                                         height="62"
                                                         marginTop="1"
                                                         borderRadius="20"
+                                                        width="100"
                                                     >
                                                         Sign In
                                                     </Buttons>
                                                 </Container>
-                                
                                             </Form>
+
+                                            <Rows>
+                                                <Column md={6} sm={12}>
+                                                    <Placeholder 
+                                                        color="Default"
+                                                        margin="0-0-0-0"
+                                                    >
+                                                        Sign In with:
+                                                    </Placeholder>
+                                                    <Container display="flex" justifyContent="start">
+                                                        {socialLogins.map(socialLogin => (
+                                                            <TargetLink key={socialLogin.id}>
+                                                                <Image 
+                                                                    src={socialLogin.icon} 
+                                                                    alt={socialLogin.alt}
+                                                                    width ="30"
+                                                                    height="30"
+                                                                    margin={socialLogin.margin}
+                                                                    transform = {true}
+                                                                />
+                                                            </TargetLink>
+                                                        ))}
+                                                    </Container>
+                                                </Column>
+                                                <Column md={6} sm={12}>
+                                                    <Container display="flex" justifyContent="end">
+                                                        <TargetLink
+                                                            color="Default"
+                                                            hoverColor="primary"
+                                                            margin="1-0-0-0"
+                                                        >
+                                                            Don't have an account? Create one
+                                                        </TargetLink>
+                                                    </Container>
+                                                </Column>
+                                            </Rows>
                                         </Column>
-                                        <Column md={6} sm={12}></Column>
+
+
+                                        <Column md={6} sm={12}>
+                                            <Container display="flex">
+                                                <Image 
+                                                    src="https://res.cloudinary.com/emacon-production/image/upload/v1623146015/Shikilia/Shikilia_Stores_Logo_zdzer3.png" 
+                                                    alt="Shopping" 
+                                                    width="200"
+                                                    height="80"
+                                                />
+                                            </Container>
+                                            <Container display="flex">
+                                                <Image 
+                                                    src="https://res.cloudinary.com/emacon-production/image/upload/v1623754489/Shikilia/undraw_shopping_app_flsj_ovxqmv.svg" 
+                                                    alt="Shopping" 
+                                                    height="150"
+                                                    margin="2-0-2-0"
+                                                />
+                                            </Container>
+                                        </Column>
                                     </Rows>
                                 </Container>
-                                <h2 id="transition-modal-title">Transition modal</h2>
-                                <p id="transition-modal-description">react-transition-group animates me.</p>
                             </div>
                         </Fade>
                     </Modals>    
                 ) : 
                 (
-                    <React.Fragment>HELLO</React.Fragment>
+                    <React.Fragment></React.Fragment>
+                ) &&
+
+                modalType === "signUp" ? 
+                (
+                    <Modals
+                        aria-labelledby="transition-modal-title"
+                        aria-describedby="transition-modal-description"
+                        className={classes.modal}
+                        open={status}
+                        onClose={onClose}
+                        closeAfterTransition
+                        BackdropComponent={Backdrop}
+                        BackdropProps={{
+                                timeout: 500,
+                        }}
+                    >
+                        <Fade in={status}>
+                            <div className={classes.paper}>
+                                <Container display="flex" justifyContent="end">
+                                    <Buttons color="Default" hoverColor="primary" onClick={onClose}>
+                                        <CloseIcon/> 
+                                    </Buttons>
+                                </Container>
+                                <Container width="850">
+                                    <Rows>
+                                        <Column md={6} sm={12}>
+                                            <Title1>Join Us!</Title1>
+                                            <Form>
+                                                <TextField
+                                                    className={classes.root}
+                                                    margin='normal'
+                                                    required
+                                                    fullWidth
+                                                    id='name'
+                                                    label='Full Name'
+                                                    name='name'
+                                                    type='text'
+                                                    value={name}
+                                                    onChange={(e) => setName(e.target.value)}
+                                                />
+                                                <TextField
+                                                    className={classes.root}
+                                                    margin='normal'
+                                                    required
+                                                    fullWidth
+                                                    id='email'
+                                                    label='Email Address'
+                                                    name='email'
+                                                    type='email'
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                />
+                                                <TextField
+                                                    className={classes.root}
+                                                    margin='normal'
+                                                    required
+                                                    fullWidth
+                                                    id='password'
+                                                    label='Password'
+                                                    name='password'
+                                                    type='password'
+                                                    value={password}
+                                                    onChange={(e) => setPassword(e.target.value)}
+                                                />
+                                                <TextField
+                                                    className={classes.root}
+                                                    margin='normal'
+                                                    required
+                                                    fullWidth
+                                                    id='confirmPassword'
+                                                    label='Confirm Password'
+                                                    name='confirmPassword'
+                                                    type='password'
+                                                    value={confirmPassword}
+                                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                                />
+
+                                                <Container height="70">  
+                                                    <FormControlLabel
+                                                        control={
+                                                            <Checkbox
+                                                                checked={privacyPolicy}
+                                                                onChange={() => setPrivacyPolicy(!privacyPolicy)}
+                                                                color="primary"
+                                                            />
+                                                        }
+                                                        label="I Agree with the privacy policy"
+                                                    />
+                                                </Container>
+
+                                                <Container marginTop="2">
+                                                    <Buttons 
+                                                        background="Default"
+                                                        hoverBackground = "primary"
+                                                        height="62"
+                                                        marginTop="1"
+                                                        borderRadius="20"
+                                                        width="100"
+                                                    >
+                                                        Sign Up
+                                                    </Buttons>
+                                                </Container>
+                                            </Form>
+
+                                            <Rows>
+                                                <Column md={6} sm={12}>
+                                                    <Placeholder 
+                                                        color="Default"
+                                                        margin="0-0-0-0"
+                                                    >
+                                                        Sign Up with:
+                                                    </Placeholder>
+                                                    <Container display="flex" justifyContent="start">
+                                                        {socialLogins.map(socialLogin => (
+                                                            <TargetLink key={socialLogin.id}>
+                                                                <Image 
+                                                                    src={socialLogin.icon} 
+                                                                    alt={socialLogin.alt}
+                                                                    width ="30"
+                                                                    height="30"
+                                                                    margin={socialLogin.margin}
+                                                                    transform = {true}
+                                                                />
+                                                            </TargetLink>
+                                                        ))}
+                                                    </Container>
+                                                </Column>
+                                                <Column md={6} sm={12}>
+                                                    <Container display="flex" justifyContent="end">
+                                                        <TargetLink
+                                                            color="Default"
+                                                            hoverColor="primary"
+                                                            margin="1-0-0-0"
+                                                        >
+                                                            Already have an account? Sign In
+                                                        </TargetLink>
+                                                    </Container>
+                                                </Column>
+                                            </Rows>
+                                        </Column>
+
+
+                                        <Column md={6} sm={12}>
+                                            <Container display="flex">
+                                                <Image 
+                                                    src="https://res.cloudinary.com/emacon-production/image/upload/v1623146015/Shikilia/Shikilia_Stores_Logo_zdzer3.png" 
+                                                    alt="Shopping" 
+                                                    width="200"
+                                                    height="80"
+                                                />
+                                            </Container>
+                                            <Container display="flex">
+                                                <Image 
+                                                    src="https://res.cloudinary.com/emacon-production/image/upload/v1623754489/Shikilia/undraw_shopping_app_flsj_ovxqmv.svg" 
+                                                    alt="Shopping" 
+                                                    height="150"
+                                                    margin="2-0-2-0"
+                                                />
+                                            </Container>
+                                        </Column>
+                                    </Rows>
+                                </Container>
+                            </div>
+                        </Fade>
+                    </Modals>    
+                ) : 
+                (
+                    <React.Fragment></React.Fragment>
                 )
             }
         </React.Fragment>

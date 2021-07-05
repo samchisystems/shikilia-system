@@ -48,7 +48,11 @@ function Navigation() {
     const classes = useStyles();
 
     const [searchInput, setSearchInput] = useState();
-    const [modalStatus, setModalStatus] = useState(true);
+    const [modalStatus, setModalStatus] = useState(false);
+
+    const handleModal = () => {
+        setModalStatus(false)
+    }
 
     return (
         <Section backgroundColor="Default">
@@ -65,6 +69,7 @@ function Navigation() {
                             key = {topMenu.id}
                             margin = "2-2-2.5-0"
                             border = {topMenu.border}
+                            onClick={() => setModalStatus(true)}
                         >
                             {
                                 topMenu.icon === 'FavoriteIcon' ?
@@ -76,9 +81,9 @@ function Navigation() {
                             }
                             {topMenu.title}
 
-                            
+                            <ModalCard modal={topMenu.modal} status={modalStatus} onClose={handleModal}/>
                         </TargetLink>
-                        <ModalCard modal="signIn" status={modalStatus}/>
+                        
                     </React.Fragment>
                     
                 ))}

@@ -68,6 +68,7 @@ function Navigation() {
                         <TargetLink 
                             key = {topMenu.id}
                             margin = "2-2-2.5-0"
+                            hoverColor="primary"
                             border = {topMenu.border}
                             onClick={() => setModalStatus(true)}
                         >
@@ -129,6 +130,7 @@ function Navigation() {
                     <Column md={4} display = "flex">
                         <TargetLink 
                             margin = "2-0-0-0"
+                            hoverColor="primary"
                         >
                             <ShoppingCartIcon/>
                             My Cart | Ksh 1,000,000.00
@@ -162,14 +164,12 @@ function Navigation() {
                     </Column>
                     <Column md={1}>
                         <TargetLink
-                            hoverColor = "Default"
+                            hoverColor = "Default"Default
                             border = {true}
                             display = "flex"
+                            className="ml-3"
                         >
-                            <Placeholder className="ml-3">
-                                Shikilia stores
-                            </Placeholder>
-                            
+                            Shikilia stores
                         </TargetLink>
                     </Column>
                 </Rows>

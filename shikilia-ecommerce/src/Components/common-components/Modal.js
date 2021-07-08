@@ -10,6 +10,10 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { socialLogins } from '../../Data/modalData';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import AppleIcon from '@material-ui/icons/Apple';
+import GitHubIcon from '@material-ui/icons/GitHub';
 // import socialLogins from '../../Data/modalData'
 
 
@@ -135,7 +139,7 @@ function ModalCard({modal, status, onClose}) {
                                                         hoverBackground = "primary"
                                                         height="62"
                                                         marginTop="1"
-                                                        borderRadius="20"
+                                                        // borderRadius="20"
                                                         width="100"
                                                     >
                                                         Sign In
@@ -184,24 +188,52 @@ function ModalCard({modal, status, onClose}) {
                                                         <Buttons 
                                                             key={socialLogin.id}
                                                             background = "Default"
+                                                            width="100"
+                                                            // borderRadius="20"
+                                                            margin="1-0-0-0"
+                                                            hoverBackground={socialLogin.background}
+                                                            
+
                                                         >
-                                                            {socialLogin.typeOfIcon === "image" ? 
-                                                                (
-                                                                    <Image 
-                                                                        src={socialLogin.icon} 
-                                                                        alt={socialLogin.alt}
-                                                                        width ="30"
-                                                                        height="30"
-                                                                        margin={socialLogin.margin}
-                                                                        transform = {true}
-                                                                    />
-                                                                ):(
-                                                                    <></>
-                                                                )
-                                                            }
                                                             
+                                                            <Container>
+                                                                {socialLogin.typeOfIcon === "image" ? 
+                                                                    (
+                                                                        <Image 
+                                                                            className="mr-3"
+                                                                            src={socialLogin.icon} 
+                                                                            alt={socialLogin.alt}
+                                                                            width ="20"
+                                                                            height="20"
+                                                                            transform = {true}
+                                                                        />
+                                                                    ):(
+                                                                        <React.Fragment>
+                                                                            {
+                                                                                socialLogin.alt === "Facebook" ? 
+                                                                                <FacebookIcon className="mr-3"/> 
+                                                                                : 
+                                                                                (<></>) &&
+                                                                                socialLogin.alt === "Twitter" ? 
+                                                                                <TwitterIcon className="mr-3"/> 
+                                                                                : 
+                                                                                (<></>) &&
+                                                                                socialLogin.alt === "Apple-Id" ? 
+                                                                                <AppleIcon className="mr-3"/> 
+                                                                                : 
+                                                                                (<></>) &&
+                                                                                socialLogin.alt === "Github" ? 
+                                                                                <GitHubIcon className="mr-3"/> 
+                                                                                : 
+                                                                                (<></>) 
+                                                                            }
+                                                                        </React.Fragment>
+                                                                    )
+                                                                }
                                                             
-                                                            {socialLogin.placeHolder}
+                                                               {socialLogin.placeHolder} 
+                                                            </Container>
+                                                            
                                                         </Buttons>
                                                     ))}
                                                 </Container>

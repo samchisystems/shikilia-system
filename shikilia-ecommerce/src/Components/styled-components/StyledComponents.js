@@ -123,13 +123,13 @@ export const TargetLink = styled.a`
 
 export const Image = styled.img`
     height: ${({height}) => (
-        height === "30" ? "30px" : "100%" &&
+        height === "20" ? "20px" : "100%" &&
         height === "50" ? "50px" : "100%" &&
         height === "80" ? "80px" : "100%" &&
         height === "150" ? "250px" : "100%"
     )};
     width: ${({width}) => (
-        width === "30" ? "30px" : "100%" &&
+        width === "20" ? "20px" : "100%" &&
         width === "200" ? "200px" : "100%"
     )};
     margin: ${({margin}) => (
@@ -167,7 +167,7 @@ export const Buttons = styled(Button)`
     border: none;
     background: ${({background}) => (
         background === "transparent" ? "transparent" : "transparent"&&
-        background === "Default" ? "#172b4d" : "transparent"
+        background === "Default" ? "#172b4d" : "transparent" 
     )};
     color: ${({color}) => (
         color === "Default" ? "#172b4d !important" : "white !important"
@@ -178,6 +178,9 @@ export const Buttons = styled(Button)`
     border-radius: ${({borderRadius}) => (
         borderRadius === "20" ? "20px" : "0px"
     )};
+    margin: ${({margin}) => (
+        margin === '1-0-0-0' ? "1rem 0rem 0rem 0rem" : "0rem 0rem 0rem 0rem"
+    )};
     
     transition: .3s all;
 
@@ -186,7 +189,11 @@ export const Buttons = styled(Button)`
             hoverColor === "primary" ? "#5e72e4" : "#white !important"
         )};
         background: ${({hoverBackground}) => (
-            hoverBackground === "primary" ? "#5e72e4" : "transparent" 
+            hoverBackground === "primary" ? "#5e72e4" : "transparent" &&
+            hoverBackground === "red" ? "red" : "transparent" &&
+            hoverBackground === "black" ? "black" : "transparent" &&
+            hoverBackground === "darkBlue" ? "#3b5998" : "transparent" &&
+            hoverBackground === "lightBlue" ? "#1da1f2" : "transparent"
         )};
         text-decoration: none;
         transform: scale(1.02) !important;

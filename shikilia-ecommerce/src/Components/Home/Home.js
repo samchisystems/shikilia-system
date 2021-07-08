@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { productCategorysData } from '../../Data/menuData'
 import Navigation from '../common-components/Navigation'
-import { Placeholder, Cards, Column, Rows, Container, Section, TargetLink } from '../styled-components/StyledComponents'
+import { Image, Placeholder, Cards, Column, Rows, Container, Section, TargetLink, Title2, Title3, Buttons, SliderButtons, NextArrow, PrevArrrow } from '../styled-components/StyledComponents'
 import CategoryIcon from '@material-ui/icons/Category'; //Category
 import LocalMallIcon from '@material-ui/icons/LocalMall'; // Clothing
 import DevicesIcon from '@material-ui/icons/Devices'; //Electronic
@@ -11,8 +11,50 @@ import SportsFootballIcon from '@material-ui/icons/SportsFootball';
 import HomeIcon from '@material-ui/icons/Home';
 import ChildCareIcon from '@material-ui/icons/ChildCare';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { ProductSliderData } from '../../Data/productSlider';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { guaranteeData } from '../../Data/randomData';
 
 function Home() {
+    const [sliderCurrent, setSliderCurrent] = useState(1);
+
+    const productLength = ProductSliderData.length;
+    const timeout = useRef(null);
+
+    useEffect(() => {
+        const nextSlide = () => {
+            setSliderCurrent(slideCurrent => (slideCurrent === productLength - 1 ? 0 : slideCurrent + 1));
+        }
+
+        timeout.current = setTimeout(nextSlide, 6000);
+
+        return function () {
+            if(timeout.current){
+                clearTimeout(timeout.current);
+            }
+        }
+    }, [sliderCurrent, productLength]);
+
+    const nextSlide = () =>{
+        if(timeout.current) {
+            clearTimeout(timeout.current);
+        }
+        setSliderCurrent( sliderCurrent === productLength - 1 ? 0 : sliderCurrent + 1);
+    };
+
+    const prevSlide = () =>{
+        if(timeout.current) {
+            clearTimeout(timeout.current);
+        }
+        setSliderCurrent( sliderCurrent === 0 ? productLength - 1 : sliderCurrent - 1 );
+    };
+
+    if (!Array.isArray(ProductSliderData) || ProductSliderData.length <= 0){
+        return null;
+    }
+
+
     return (
         <React.Fragment>
             {/* Navigation Section */}
@@ -23,6 +65,8 @@ function Home() {
                 <Container display="flex">
                     <Rows width="100">
                         <Column md={4} className="ml-5">
+
+                            {/* Product Category Card */}
                             <Cards width="336">
                                 {productCategorysData.map(productCategory => (
                                     <TargetLink
@@ -66,9 +110,102 @@ function Home() {
                                     </TargetLink>
                                 ))}
                             </Cards>
+
                         </Column>
                         <Column md={7}>
-                            <Cards>Hello</Cards>
+                            <Cards>
+                                {/* Product Slider */}
+                                {ProductSliderData.map(productSlider => (
+                                    <React.Fragment>
+                                        {
+                                            productSlider.id === sliderCurrent && (
+                                                <Rows 
+                                                    key={productSlider.id} 
+                                                    margin="3-0-0-5"
+                                                >
+                                                    <Column md={4}>
+                                                        <Container 
+                                                            display="flex"
+                                                            alignItems="center"
+                                                            backgroundColor="primary"
+                                                            borderRadius="300"
+                                                            width="280"
+                                                            height="280"
+                                                        >
+                                                            <Image
+                                                                src={productSlider.image}
+                                                                alt={productSlider.alt}
+                                                                height="555"
+                                                                width="360"
+                                                                dropShadow={true}
+                                                                margin="1-5-0-0"
+                                                            />
+                                                        </Container>
+                                                    </Column>
+                                                    <Column md={7}>
+                                                        <Container>
+                                                            <Title2 color="Default" margin="1-0-0-0">{productSlider.title}</Title2>
+                                                            <Placeholder color="Default" margin="1-0-0-0">{productSlider.description}</Placeholder>
+                                                            <Title3 color="Default" margin="1-0-0-0">KSHs {productSlider.price}</Title3>
+                                                            <Buttons 
+                                                                background="Default" 
+                                                                hoverBackground="primary"
+                                                                margin="1-0-0-0"
+                                                                borderRadius="21"
+                                                                padding="1-1-1-1"
+                                                            >
+                                                                SHOP NOW
+                                                            </Buttons>
+                                                        </Container>
+                                                    </Column>
+                                                </Rows>
+                                            )
+                                        }
+                                    </React.Fragment>
+                                ))}
+
+                                {/* Arrow container */}
+                                <Container display="flex" justifyContent="end" margin="2-2-1-0">
+                                    <Buttons 
+                                        background="Default"
+                                        hoverBackground="primary"
+                                        margin="0-1-0-0" 
+                                        padding="1-1-1-1" 
+                                        borderRadius="21"
+                                        onClick={prevSlide}
+                                    >
+                                        <ArrowBackIcon/>
+                                    </Buttons>
+                                    <Buttons 
+                                        background="Default"
+                                        hoverBackground="primary"
+                                        margin="0-4-0-0" 
+                                        padding="1-1-1-1" 
+                                        borderRadius="21"
+                                        onClick={nextSlide}
+                                    >
+                                        <ArrowForwardIcon/>
+                                    </Buttons>
+                                </Container>
+
+                                {/* Assuarance Statements */}
+                                <Rows backgroundColor="Default">
+                                    {guaranteeData.map(guarantee => (
+                                        <Column md={4} key={guarantee.id}>
+                                            <Container padding="1-0-1-0">
+                                                <Container>
+                                                    <Title3 textAlign="center">{guarantee.title}</Title3>
+                                                    <Placeholder textAlign="center">{guarantee.desc}</Placeholder>
+                                                </Container>
+                                            </Container>
+                                            
+                                        </Column>
+                                    ))}
+                                    
+                                    <Column md={4}></Column>
+                                    <Column md={4}></Column>
+                                </Rows>
+                            </Cards>
                         </Column>
                     </Rows>
                 </Container>

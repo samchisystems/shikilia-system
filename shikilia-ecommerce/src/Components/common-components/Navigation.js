@@ -49,10 +49,8 @@ function Navigation() {
 
     const [searchInput, setSearchInput] = useState();
     const [modalStatus, setModalStatus] = useState(false);
-    const [signInModal, setSignInModal] = useState(false)
 
-    const handleModal = (e) => {
-        e.preventDefault()
+    const handleModal = () => {
         setModalStatus(!modalStatus)
     }
 
@@ -72,7 +70,11 @@ function Navigation() {
                             margin = "2-2-2.5-0"
                             hoverColor="primary"
                             border = {topMenu.border}
-                            onClick={handleModal}
+                            onClick={() => {
+                                if (topMenu.modal === 'signIn'){
+                                    handleModal()
+                                }     
+                            }}
                         >
                             {
                                 topMenu.icon === 'FavoriteIcon' ?

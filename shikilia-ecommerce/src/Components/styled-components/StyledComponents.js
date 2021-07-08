@@ -170,7 +170,7 @@ export const Buttons = styled(Button)`
         background === "Default" ? "#172b4d" : "transparent"
     )};
     color: ${({color}) => (
-        color === "Default" ? "#172b4d" : "white"
+        color === "Default" ? "#172b4d !important" : "white !important"
     )};
     width: ${({width}) => (
         width === "100" ? "100%" : ""

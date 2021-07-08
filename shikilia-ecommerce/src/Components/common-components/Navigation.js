@@ -49,9 +49,11 @@ function Navigation() {
 
     const [searchInput, setSearchInput] = useState();
     const [modalStatus, setModalStatus] = useState(false);
+    const [signInModal, setSignInModal] = useState(false)
 
-    const handleModal = () => {
-        setModalStatus(false)
+    const handleModal = (e) => {
+        e.preventDefault()
+        setModalStatus(!modalStatus)
     }
 
     return (
@@ -70,7 +72,7 @@ function Navigation() {
                             margin = "2-2-2.5-0"
                             hoverColor="primary"
                             border = {topMenu.border}
-                            onClick={() => setModalStatus(true)}
+                            onClick={handleModal}
                         >
                             {
                                 topMenu.icon === 'FavoriteIcon' ?
@@ -82,8 +84,9 @@ function Navigation() {
                             }
                             {topMenu.title}
 
-                            <ModalCard modal={topMenu.modal} status={modalStatus} onClose={handleModal}/>
+                            
                         </TargetLink>
+                        <ModalCard modal={topMenu.modal} status={modalStatus} onClose={handleModal}/>
                         
                     </React.Fragment>
                     

@@ -28,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function ModalCard(modal, status, onClose) {
+function ModalCard({modal, status, onClose}) {
     const classes = useStyles();
 
 
-    // const [open, setOpen] = useState(status);
+    const [open, setOpen] = useState(false);
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [modalType, setModalType] = useState(modal);

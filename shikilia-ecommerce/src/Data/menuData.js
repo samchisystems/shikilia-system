@@ -1,7 +1,7 @@
 export const topMenuData = [
-    {id: 1, icon: 'FavoriteIcon', title: 'Wish List', border: false, modal: "signIn"},
+    {id: 1, icon: 'FavoriteIcon', title: 'Wish List', border: false, modal: ""},
     {id: 2, icon: 'CheckIcon', title: 'Checkout', border: true, modal: ""},
-    {id: 3, icon: 'PersonIcon', title: 'Sign In', border: true, modal: ""}
+    {id: 3, icon: 'PersonIcon', title: 'Sign In', border: true, modal: "signIn"}
 ];
 export const productCategorysData = [
     { id: 1, icon:"CategoryIcon", value: "", placeHolder: "Categories", background: "Default",hoverBackground: "Default", border: true, color:"white", forwardArrow: false},

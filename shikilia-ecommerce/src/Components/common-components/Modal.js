@@ -152,6 +152,11 @@ function ModalCard({modal, status, onClose}) {
                                                     color="Default"
                                                     hoverColor="primary"
                                                     margin="1-0-0-0"
+                                                    onClick={() => {
+                                                        onClose()
+                                                        setOpen(true)
+                                                        setModalType('signUp')
+                                                    }}
                                                 >
                                                     Don't have an account? Create one
                                                 </TargetLink>
@@ -160,22 +165,6 @@ function ModalCard({modal, status, onClose}) {
 
 
                                         <Column md={6} sm={12}>
-                                            {/* <Container display="flex">
-                                                <Image 
-                                                    src="https://res.cloudinary.com/emacon-production/image/upload/v1623146015/Shikilia/Shikilia_Stores_Logo_zdzer3.png" 
-                                                    alt="Shopping" 
-                                                    width="200"
-                                                    height="80"
-                                                />
-                                            </Container>
-                                            <Container display="flex">
-                                                <Image 
-                                                    src="https://res.cloudinary.com/emacon-production/image/upload/v1623754489/Shikilia/undraw_shopping_app_flsj_ovxqmv.svg" 
-                                                    alt="Shopping" 
-                                                    height="150"
-                                                    margin="2-0-2-0"
-                                                />
-                                            </Container> */}
                                             <Container>
                                                 <Placeholder 
                                                     color="Default"
@@ -255,18 +244,18 @@ function ModalCard({modal, status, onClose}) {
                         aria-labelledby="transition-modal-title"
                         aria-describedby="transition-modal-description"
                         className={classes.modal}
-                        open={status}
-                        onClose={onClose}
+                        open={open}
+                        onClose={() => setOpen(!open)}
                         closeAfterTransition
                         BackdropComponent={Backdrop}
                         BackdropProps={{
                                 timeout: 500,
                         }}
                     >
-                        <Fade in={status}>
+                        <Fade in={open}>
                             <div className={classes.paper}>
                                 <Container display="flex" justifyContent="end">
-                                    <Buttons color="Default" hoverColor="primary" onClick={onClose}>
+                                    <Buttons color="Default" hoverColor="primary" onClick={() => setOpen(!open)}>
                                         <CloseIcon/> 
                                     </Buttons>
                                 </Container>
@@ -351,41 +340,22 @@ function ModalCard({modal, status, onClose}) {
                                                 </Container>
                                             </Form>
 
-                                            <Rows>
-                                                <Column md={6} sm={12}>
-                                                    <Placeholder 
-                                                        color="Default"
-                                                        margin="0-0-0-0"
-                                                    >
-                                                        Sign Up with:
-                                                    </Placeholder>
-                                                    <Container display="flex" justifyContent="start">
-                                                        {socialLogins.map(socialLogin => (
-                                                            <TargetLink key={socialLogin.id}>
-                                                                <Image 
-                                                                    src={socialLogin.icon} 
-                                                                    alt={socialLogin.alt}
-                                                                    width ="30"
-                                                                    height="30"
-                                                                    margin={socialLogin.margin}
-                                                                    transform = {true}
-                                                                />
-                                                            </TargetLink>
-                                                        ))}
-                                                    </Container>
-                                                </Column>
-                                                <Column md={6} sm={12}>
-                                                    <Container display="flex" justifyContent="end">
-                                                        <TargetLink
-                                                            color="Default"
-                                                            hoverColor="primary"
-                                                            margin="1-0-0-0"
-                                                        >
-                                                            Already have an account? Sign In
-                                                        </TargetLink>
-                                                    </Container>
-                                                </Column>
-                                            </Rows>
+                                            
+                                            <Container display="flex" justifyContent="start">
+                                                <TargetLink
+                                                    color="Default"
+                                                    hoverColor="primary"
+                                                    margin="1-0-0-0"
+                                                    onClick={() => {
+                                                        setOpen(!open)
+                                                        onClose()
+                                                        setModalType('signIn')
+                                                    }}
+                                                >
+                                                    Already have an account? Sign In
+                                                </TargetLink>
+                                            </Container>
+                                                   
                                         </Column>
 
 

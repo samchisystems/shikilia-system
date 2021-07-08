@@ -72,7 +72,7 @@ function Navigation() {
                             border = {topMenu.border}
                             onClick={() => {
                                 if (topMenu.modal === 'signIn'){
-                                    handleModal()
+                                    setModalStatus(true)
                                 }     
                             }}
                         >

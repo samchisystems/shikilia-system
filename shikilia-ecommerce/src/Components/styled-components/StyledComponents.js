@@ -9,6 +9,10 @@ export const Section = styled.section`
         backgroundColor === "Default" ? "#172b4d" : 'transparent' &&
         backgroundColor === "primary" ? "#5e72e4" : 'transparent'
     )};
+    overflow-x: hidden;
+    margin: ${({margin}) => (
+        margin === "1-0-0-0" ? "2rem 0rem 0rem 0rem" : "0rem 0rem 0rem 0rem"
+    )};
 `;
 
 
@@ -66,20 +70,36 @@ export const TargetLink = styled.a`
     display: ${({display}) => (
         display === "flex" ? "flex" : "block" 
     )};
+    justify-content: ${({justifyContent}) => (
+        justifyContent === "end" ? "flex-end" : "center" &&
+        justifyContent === "start" ? "flex-start" : "center"
+    )};
     text-decoration: none !important;
+    // width: 100%;
     color: ${({color}) => (
         color === "Default" ? "#172b4d !important" : "white" &&
         color === "primary" ? "#5e72e4" : "white"
+    )};
+    background: ${({background}) => (
+        background === "Default" ? "#172b4d !important" : "transparent" &&
+        background === "primary" ? "#5e72e4 !important" : "transparent"
     )};
     margin: ${({margin}) => (
         margin === "2-2-2.5-0" ? "2rem 2rem 1rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
         margin === "2-0-0-0" ? "1.5rem 0rem 0rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
         margin === "2-2-0-0" ? "2rem 2rem 0rem 2rem !important" : "0rem 0rem 0rem 0rem" &&
         margin === "1-2-0-1" ? "1rem 2rem 1rem 2rem !important" : "0rem 0rem 0rem 0rem" &&
-        margin === "1-0-0-0" ? "1rem 0rem 0rem 0rem !important" : "0rem 0rem 0rem 0rem"
+        margin === "1-0-0-0" ? "1rem 0rem 0rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
+        margin === "1-1-1-1" ? "1rem 1rem 1rem 1rem !important" : "0rem 0rem 0rem 0rem"
+    )};
+    padding: ${({padding}) => (
+        padding === "1-1-1-1" ? "1rem 1rem 1rem 1rem !important" : "0rem 0rem 0rem 0rem"
     )};
     border-left: ${({border}) => (
         border ? "1px solid white" : "none"
+    )};
+    border-bottom: ${({borderBottom}) => (
+        borderBottom ? "1px solid #DADADA" : ""
     )};
     cursor: pointer !important;
     transition: all 0.3s;
@@ -87,8 +107,12 @@ export const TargetLink = styled.a`
     &:hover {
         text-decoration-none !important;
         color: ${({hoverColor}) => (
-            hoverColor === "Default" ? "#172b4d !important" : "blue" &&
-            hoverColor === "primary" ? "#5e72e4 !important" : "white"
+            hoverColor === "Default" ? "#172b4d !important" : "white !important" &&
+            hoverColor === "primary" ? "#5e72e4 !important" : "white !important"
+        )};
+        background: ${({hoverBackground}) => (
+            hoverBackground === "Default" ? "#172b4d !important" : "transparent" &&
+            hoverBackground === "primary" ? "#5e72e4 !important" : "transparent"
         )};
         transform: ${({transform}) => (
             transform ? "scale(1.02) !important" : ""
@@ -116,7 +140,11 @@ export const Image = styled.img`
 `;
 
 
-export const Rows = styled(Row)``;
+export const Rows = styled(Row)`
+    width: ${({width}) => (
+        width === "100" ? "100%" : ""
+    )};
+`;
 
 
 export const Column = styled(Col)`
@@ -124,11 +152,13 @@ export const Column = styled(Col)`
         display === "flex" ? "flex" : "block"
     )};
     justify-content: ${({justifyContent}) => (
-        justifyContent === "end" ? "flex-end" : "center" 
+        justifyContent === "end" ? "flex-end" : "center !important" &&
+        justifyContent === "start" ? "flex-start" : "center !important" 
     )};
     margin: ${({margin}) => (
         margin === "0-0-0-0" ? "0rem 0rem -5rem 0rem !important" : "0rem 0rem 0rem 0rem"
     )};
+    width: 100%;
     
 `;
 
@@ -164,7 +194,13 @@ export const Buttons = styled(Button)`
 `;
 
 
-export const Cards = styled(Card)``;
+export const Cards = styled(Card)`
+    background: #f4f5f7;
+    box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.12);
+    width: ${({width}) => (
+        width === "336" ? "336px" : "100%"
+    )};
+`;
 
 
 export const InputField = styled(TextField)``;

@@ -110,6 +110,7 @@ function Navigation() {
                             src = "https://res.cloudinary.com/emacon-production/image/upload/v1623146015/Shikilia/Shikilia_Stores_Logo_zdzer3.png" 
                             alt = "Shikilia Logo"
                             height = "50"
+                            width="125"
                         />
                     </Column>
 

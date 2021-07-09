@@ -15,6 +15,8 @@ import { ProductSliderData } from '../../Data/productSlider';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { guaranteeData } from '../../Data/randomData';
+import ProductCard from '../common-components/ProductCard';
+import { productsData } from '../../Data/productsData';
 
 function Home() {
     const [sliderCurrent, setSliderCurrent] = useState(1);
@@ -61,58 +63,60 @@ function Home() {
             <Section>
                 <Navigation/>
             </Section>
+
+            {/* Product category & slider category */}
             <Section margin="1-0-0-0">
                 <Container display="flex">
                     <Rows width="100">
-                        <Column md={4} className="ml-5">
-
-                            {/* Product Category Card */}
-                            <Cards width="336">
-                                {productCategorysData.map(productCategory => (
-                                    <TargetLink
-                                        key={productCategory.id}
-                                        display="flex"
-                                        justifyContent="start"
-                                        borderBottom={productCategory.border}
-                                        background={productCategory.background}
-                                        hoverBackground={productCategory.hoverBackground}
-                                        color={productCategory.color}
-                                        hoverColor="white"
-                                        padding="1-1-1-1"
-                                    >
-                                        <Rows width="100">
-                                            <Column md={2} display="flex" justifyContent="start">
-                                                <Container>
-                                                    {
-                                                        productCategory.icon === "CategoryIcon" ? <CategoryIcon/> : <></> &&
-                                                        productCategory.icon === "LocalMallIcon" ? <LocalMallIcon/> : <></> &&
-                                                        productCategory.icon === "DevicesIcon" ? <DevicesIcon/> : <></> &&
-                                                        productCategory.icon === "WatchIcon" ? <WatchIcon/> : <></>&&
-                                                        productCategory.icon === "LocalHospitalIcon" ? <LocalHospitalIcon /> : <></>&&
-                                                        productCategory.icon === "ChildCareIcon" ? <ChildCareIcon/> : <></>&&
-                                                        productCategory.icon === "SportsFootballIcon" ? <SportsFootballIcon/> : <></>&&
-                                                        productCategory.icon === "HomeIcon" ? <HomeIcon /> : <></>
-                                                        
-                                                    }
-                                                </Container>
-                                            </Column>
-                                            <Column md={8} display="flex" justifyContent="start">
-                                                <Container>
-                                                        {productCategory.placeHolder}
-                                                </Container>
-                                            </Column>
-                                            <Column md={1}>
-                                                <Container>
-                                                    {productCategory.forwardArrow ? <ArrowForwardIosIcon/> : <></>}
-                                                </Container>
-                                            </Column>
-                                        </Rows>
-                                    </TargetLink>
-                                ))}
-                            </Cards>
-
+                        <Column md={3} className="ml-5">
+                            <Container display="flex" justifyContent="end">
+                                {/* Product Category Card */}
+                                <Cards width="336">
+                                    {productCategorysData.map(productCategory => (
+                                        <TargetLink
+                                            key={productCategory.id}
+                                            display="flex"
+                                            justifyContent="start"
+                                            borderBottom={productCategory.border}
+                                            background={productCategory.background}
+                                            hoverBackground={productCategory.hoverBackground}
+                                            color={productCategory.color}
+                                            hoverColor="white"
+                                            padding="1-1-1-1"
+                                        >
+                                            <Rows width="100">
+                                                <Column md={2} display="flex" justifyContent="start">
+                                                    <Container>
+                                                        {
+                                                            productCategory.icon === "CategoryIcon" ? <CategoryIcon/> : <></> &&
+                                                            productCategory.icon === "LocalMallIcon" ? <LocalMallIcon/> : <></> &&
+                                                            productCategory.icon === "DevicesIcon" ? <DevicesIcon/> : <></> &&
+                                                            productCategory.icon === "WatchIcon" ? <WatchIcon/> : <></>&&
+                                                            productCategory.icon === "LocalHospitalIcon" ? <LocalHospitalIcon /> : <></>&&
+                                                            productCategory.icon === "ChildCareIcon" ? <ChildCareIcon/> : <></>&&
+                                                            productCategory.icon === "SportsFootballIcon" ? <SportsFootballIcon/> : <></>&&
+                                                            productCategory.icon === "HomeIcon" ? <HomeIcon /> : <></>
+                                                            
+                                                        }
+                                                    </Container>
+                                                </Column>
+                                                <Column md={8} display="flex" justifyContent="start">
+                                                    <Container>
+                                                            {productCategory.placeHolder}
+                                                    </Container>
+                                                </Column>
+                                                <Column md={1}>
+                                                    <Container>
+                                                        {productCategory.forwardArrow ? <ArrowForwardIosIcon/> : <></>}
+                                                    </Container>
+                                                </Column>
+                                            </Rows>
+                                        </TargetLink>
+                                    ))}
+                                </Cards>
+                            </Container>
                         </Column>
-                        <Column md={7}>
+                        <Column md={8}>
                             <Cards>
                                 {/* Product Slider */}
                                 {ProductSliderData.map(productSlider => (
@@ -123,7 +127,7 @@ function Home() {
                                                     key={productSlider.id} 
                                                     margin="3-0-0-5"
                                                 >
-                                                    <Column md={4}>
+                                                    <Column md={5}>
                                                         <Container 
                                                             display="flex"
                                                             alignItems="center"
@@ -142,7 +146,7 @@ function Home() {
                                                             />
                                                         </Container>
                                                     </Column>
-                                                    <Column md={7}>
+                                                    <Column md={6}>
                                                         <Container>
                                                             <Title2 color="Default" margin="1-0-0-0">{productSlider.title}</Title2>
                                                             <Placeholder color="Default" margin="1-0-0-0">{productSlider.description}</Placeholder>
@@ -201,13 +205,41 @@ function Home() {
                                             
                                         </Column>
                                     ))}
-                                    
-                                    <Column md={4}></Column>
-                                    <Column md={4}></Column>
                                 </Rows>
                             </Cards>
                         </Column>
                     </Rows>
+                </Container>
+            </Section>
+
+            <Section margin="1-0-0-0" padding="0-7.5-0-7.5" >
+                <Container display="flex" backgroundColor="white">
+                    <Cards>
+                        <Container>
+                            <Title3 color="Default" margin="1-1-0-0">Top selling items</Title3>
+                        </Container>
+
+                        {/* Product cards */}
+                        <Container display="flex">
+                            {/* Product Card */}
+                            <Rows>
+                                
+                                {productsData.map(product => (
+                                    <Column md={2} className="mb-5" key={product.id} margin = "1-0-0-0">
+                                        <TargetLink>
+                                            <ProductCard
+                                                productImage = {product.productImg}
+                                                title = {product.productTitle}
+                                                currentPrice = {product.currentPrice}
+                                                previousPrice = {product.previousPrice}
+                                            />
+                                        </TargetLink>
+                                    </Column>
+                                ))}
+                                
+                            </Rows>
+                        </Container>
+                    </Cards>
                 </Container>
             </Section>
         </React.Fragment>

@@ -16,6 +16,9 @@ export const Section = styled.section`
     margin: ${({margin}) => (
         margin === "1-0-0-0" ? "2rem 0rem 0rem 0rem" : "0rem 0rem 0rem 0rem"
     )};
+    padding: ${({padding}) => (
+        padding === "0-7.5-0-7.5" ? "0rem 7.5rem 1rem 7.5rem" : "0rem 0rem 0rem 0rem"
+    )};
 `;
 
 
@@ -38,21 +41,33 @@ export const Container = styled.div`
     )};
     background: ${({backgroundColor}) => (
         backgroundColor === "Default" ? "#172b4d" : 'transparent' &&
-        backgroundColor === "primary" ? "#5e72e4" : 'transparent'
+        backgroundColor === "primary" ? "#5e72e4" : 'transparent' 
     )};
     width: ${({width}) => (
+        width === "99" ? "290px !important" : "100%" &&
         width === "850" ? "850px !important" : "100%" &&
         width === "280" ? "280px !important" : "100%"
     )};
     height: ${({height}) => (
+        height === "185" ? "185px" : "100%" &&
         height === "280" ? "280px" : "100%"
     )};
     border-radius: ${({borderRadius}) => (
         borderRadius === "300" ? "300px" : "0px"
     )};
+    border: ${({border}) => (
+        border ? "1px Solid black" : "none" 
+    )};
     align-items: ${({alignItems}) =>(
         alignItems === "center" ? "center" : ""
     )};
+    transition: all 0.3s;
+
+    &:hover {
+        filter: ${({dropShadow}) => (
+        dropShadow ? "drop-shadow(0 1px 1px rgba(0,0,0,0.12))" : "none"
+    )};
+    }
 `;
 
 
@@ -93,7 +108,8 @@ export const Title3 = styled.h3`
         color === "primary" ? "#5e72e4" : "white"
     )};
     margin: ${({margin}) => (
-        margin === "1-0-0-0" ? "1rem 0rem 0rem 0rem !important" : "0px 0px 0px 0px"
+        margin === "1-0-0-0" ? "1rem 0rem 0rem 0rem !important" : "0px 0px 0px 0px" &&
+        margin === "1-1-0-0" ? "1rem 0rem 0rem 2rem !important" : "0px 0px 0px 0px"
     )};
     text-align: ${({textAlign}) => (
         textAlign === "center" ? "center" : ""
@@ -108,10 +124,17 @@ export const Placeholder = styled.p`
     )};
     margin: ${({margin}) => (
         margin === "0-0-0-0" ? "1rem 0rem 0rem 0rem !important" : "0px 0px 0px 0px" &&
-        margin === "1-0-0-0" ? "1rem 0rem 0rem 0rem !important" : "0px 0px 0px 0px"
+        margin === "1-0-0-0" ? "1rem 0rem 0rem 0rem !important" : "0px 0px 0px 0px" &&
+        margin === "0.3-0-0-0.5" ? "0.3rem 0rem 0rem 0.5rem !important" : "0px 0px 0px 0px" &&
+        margin === "0.5-0-0-0.5" ? "0.2rem 0rem 0rem 0.5rem !important" : "0px 0px 0px 0px" &&
+        margin === "0.5-0-1-0.5" ? "0.2rem 0rem 1rem 0.5rem !important" : "0px 0px 0px 0px"
     )};
     text-align: ${({textAlign}) => (
         textAlign === "center" ? "center" : ""
+    )};
+    font-size: ${({fontSize}) => (
+        fontSize === "25" ? "25px" : "17px" &&
+        fontSize === "21" ? "21px" : "17px"
     )};
 `;
 
@@ -168,7 +191,7 @@ export const TargetLink = styled.a`
             hoverBackground === "primary" ? "#5e72e4 !important" : "transparent"
         )};
         transform: ${({transform}) => (
-            transform ? "scale(1.02) !important" : ""
+            transform ? "scale(1.01) !important" : ""
         )};
     }
 `;
@@ -184,6 +207,7 @@ export const Image = styled.img`
     )};
     width: ${({width}) => (
         width === "20" ? "20px" : "100%" &&
+        width === "125" ? "125px" : "100%" &&
         width === "200" ? "200px" : "100%"&&
         width === "360" ? "360px" : "100%"
     )};
@@ -223,7 +247,8 @@ export const Column = styled(Col)`
         justifyContent === "start" ? "flex-start" : "center !important" 
     )};
     margin: ${({margin}) => (
-        margin === "0-0-0-0" ? "0rem 0rem -5rem 0rem !important" : "0rem 0rem 0rem 0rem"
+        margin === "0-0-0-0" ? "0rem 0rem -5rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
+        margin === "1-0-0-0" ? "2rem 0rem 2rem 2rem !important" : "0rem 0rem 0rem 0rem"
     )};
     width: 100%;
     
@@ -279,7 +304,7 @@ export const Cards = styled(Card)`
     background: #f4f5f7;
     box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.12);
     width: ${({width}) => (
-        width === "336" ? "336px" : "100%"
+        width === "336" ? "373.5px" : "100%"
     )};
 `;
 

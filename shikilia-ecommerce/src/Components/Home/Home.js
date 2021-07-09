@@ -17,6 +17,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { guaranteeData } from '../../Data/randomData';
 import ProductCard from '../common-components/ProductCard';
 import { productsData } from '../../Data/productsData';
+import Footer from '../common-components/Footer';
 
 function Home() {
     const [sliderCurrent, setSliderCurrent] = useState(1);
@@ -223,7 +224,6 @@ function Home() {
                         <Container display="flex">
                             {/* Product Card */}
                             <Rows>
-                                
                                 {productsData.map(product => (
                                     <Column md={2} className="mb-5" key={product.id} margin = "1-0-0-0">
                                         <TargetLink>
@@ -236,11 +236,15 @@ function Home() {
                                         </TargetLink>
                                     </Column>
                                 ))}
-                                
                             </Rows>
                         </Container>
                     </Cards>
                 </Container>
+            </Section>
+
+            {/* Footer */}
+            <Section>
+                <Footer/>
             </Section>
         </React.Fragment>
     )

@@ -34,10 +34,14 @@ export const Container = styled.div`
         margin === "0-0-0--6" ? "0rem 0rem 0rem -6rem !important" : "0rem 0rem 0rem 0rem" &&
         margin === "0-0-2-0" ? "0rem 0rem 2rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
         margin === "2-0-0-0" ? "2rem 0rem 0rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
-        margin === "2-2-1-0" ? "2rem 2rem 1rem 0rem !important" : "0rem 0rem 0rem 0rem"
+        margin === "2-2-1-0" ? "2rem 2rem 1rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
+        margin === "2-2-1-0" ? "2rem 2rem 1rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
+        margin === "2-2-1-5" ? "0rem 0rem 2rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
+        margin === "2-0-0-0" ? "2rem 0rem 0rem 0rem !important" : "0rem 0rem 0rem 0rem"
     )};
     padding: ${({padding}) => (
-        padding === "1-0-1-0" ? "1rem 0rem 1rem 0rem" : "0rem 0rem 0rem 0rem"
+        padding === "1-0-1-0" ? "1rem 0rem 1rem 0rem" : "0rem 0rem 0rem 0rem !important" &&
+        padding === "3-0-3-0" ? "3rem 0rem 3rem 0rem" : "0rem 0rem 0rem 0rem !important"
     )};
     background: ${({backgroundColor}) => (
         backgroundColor === "Default" ? "#172b4d" : 'transparent' &&
@@ -49,6 +53,7 @@ export const Container = styled.div`
         width === "280" ? "280px !important" : "100%"
     )};
     height: ${({height}) => (
+        height === "35" ? "35px" : "100%" &&
         height === "185" ? "185px" : "100%" &&
         height === "280" ? "280px" : "100%"
     )};
@@ -181,7 +186,9 @@ export const TargetLink = styled.a`
     transition: all 0.3s;
    
     &:hover {
-        text-decoration-none !important;
+        text-decoration: ${({decoration}) => (
+            decoration ? "underline !important" : "none !important"
+        )};
         color: ${({hoverColor}) => (
             hoverColor === "Default" ? "#172b4d !important" : "white !important" &&
             hoverColor === "primary" ? "#5e72e4 !important" : "white !important"
@@ -226,7 +233,11 @@ export const Image = styled.img`
 
 export const Rows = styled(Row)`
     width: ${({width}) => (
+        width === "70" ? "70%" : "100%" &&
         width === "100" ? "100%" : ""
+    )};
+    height: ${({height}) => (
+        height === "148" ? "130px" : "100%"
     )};
     margin: ${({margin}) => (
         margin === "3-0-0-5" ? "3rem 0rem 0rem 5rem" : "0rem 0rem 0rem 0rem"
@@ -248,7 +259,8 @@ export const Column = styled(Col)`
     )};
     margin: ${({margin}) => (
         margin === "0-0-0-0" ? "0rem 0rem -5rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
-        margin === "1-0-0-0" ? "2rem 0rem 2rem 2rem !important" : "0rem 0rem 0rem 0rem"
+        margin === "1-0-0-0" ? "2rem 0rem 2rem 2rem !important" : "0rem 0rem 0rem 0rem" &&
+        margin === "0-0-0-2" ? "0rem 0rem 0rem 2rem !important" : "0rem 0rem 0rem 0rem"
     )};
     width: 100%;
     
@@ -278,14 +290,16 @@ export const Buttons = styled(Button)`
     )};
     padding: ${({padding}) => (
         padding === "1-1-1-1" ? "1rem 1rem 1rem 1rem" : "0rem 0rem 0rem 0rem" &&
-        padding === "2-2-2-2" ? "1.5rem 1.5rem 1.5rem 1.5rem" : "0rem 0rem 0rem 0rem"
+        padding === "2-2-2-2" ? "1.5rem 1.5rem 1.5rem 1.5rem" : "0rem 0rem 0rem 0rem" &&
+        padding === "0.8-1-0.8-1" ? "0.8rem 1rem 0.8rem 1rem" : "0rem 0rem 0rem 0rem" 
     )};
     z-index: 10000000;
     transition: .3s all;
 
     &:hover {
         color: ${({hoverColor}) => (
-            hoverColor === "primary" ? "#5e72e4" : "#white !important"
+            hoverColor === "primary" ? "#5e72e4" : "#white !important" &&
+            hoverColor === "Default" ? "#172b4d" : "#white !important"
         )};
         background: ${({hoverBackground}) => (
             hoverBackground === "primary" ? "#5e72e4" : "transparent" &&
@@ -294,8 +308,11 @@ export const Buttons = styled(Button)`
             hoverBackground === "darkBlue" ? "#3b5998" : "transparent" &&
             hoverBackground === "lightBlue" ? "#1da1f2" : "transparent"
         )};
+        border: ${({hoverBorder}) => (
+            hoverBorder ? "2px Solid white" : "none"
+        )};
         text-decoration: none;
-        transform: scale(1.02) !important;
+        transform: scale(1.01) !important;
     }
 `;
 

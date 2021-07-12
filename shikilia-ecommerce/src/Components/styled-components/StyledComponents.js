@@ -209,10 +209,12 @@ export const Image = styled.img`
         height === "50" ? "50px" : "100%" &&
         height === "80" ? "80px" : "100%" &&
         height === "150" ? "250px" : "100%" &&
+        height === "450" ? "450px" : "100%" &&
         height === "555" ? "555px" : "100%"
     )};
     width: ${({width}) => (
         width === "20" ? "20px" : "100%" &&
+        width === "80" ? "80px" : "100%" &&
         width === "125" ? "125px" : "100%" &&
         width === "200" ? "200px" : "100%"&&
         width === "360" ? "360px" : "100%"
@@ -221,6 +223,7 @@ export const Image = styled.img`
         margin === "1-0-0-0" ? "1rem 0rem 0rem 0rem" : "0rem 0rem 0rem 0rem" &&
         margin === "1-0-0-1" ? "1rem 0rem 0rem 1rem" : "0rem 0rem 0rem 0rem" &&
         margin === "2-0-2-0" ? "2rem 0rem 2rem 0rem" : "0rem 0rem 0rem 0rem" &&
+        margin === "2-1-2-1" ? "2rem 1rem 2rem 1rem" : "0rem 0rem 0rem 0rem" &&
         margin === "1-5-0-0" ? "1rem -10rem 0rem 0rem" : "0rem 0rem 0rem 0rem" 
     )};
     filter: ${({dropShadow}) => (
@@ -239,7 +242,11 @@ export const Rows = styled(Row)`
         height === "148" ? "130px" : "100%"
     )};
     margin: ${({margin}) => (
-        margin === "3-0-0-5" ? "3rem 0rem 0rem 5rem" : "0rem 0rem 0rem 0rem"
+        margin === "3-0-0-5" ? "3rem 0rem 0rem 5rem" : "0rem 0rem 0rem 0rem" &&
+        margin === "1.5-10-0-10" ? "1.5rem 10rem 0rem 10rem" : "0rem 0rem 0rem 0rem"
+    )};
+    padding: ${({padding}) => (
+        padding === "3-0-0-5" ? "5rem 0re 0rem 0rem !important" : "0rem 0rem 0rem 0rem"
     )};
     background: ${({backgroundColor}) => (
         backgroundColor === "Default" ? "#172b4d" : 'transparent' &&

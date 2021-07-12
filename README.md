@@ -13,7 +13,7 @@ This is an e-commerce website created for Shikilia Organization which is a compa
 The technologies used to crate this system are the following :
 * React JS
 * Firebase 
-* Python 3.7
+* Python 3.9
 
 ## Folder structure 
  ```

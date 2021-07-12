@@ -2,8 +2,7 @@ import styled, { css }  from 'styled-components/macro';
 import { Col, Row, Button, Card } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
 import Modal from '@material-ui/core/Modal';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Link } from 'react-router-dom'
 
 
 export const Section = styled.section`
@@ -147,7 +146,7 @@ export const Placeholder = styled.p`
 export const Form = styled.form``;
 
 
-export const TargetLink = styled.a`
+export const TargetLink = styled(Link)`
     display: ${({display}) => (
         display === "flex" ? "flex" : "block" 
     )};

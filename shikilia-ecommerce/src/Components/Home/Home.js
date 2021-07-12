@@ -226,7 +226,7 @@ function Home() {
                             <Rows>
                                 {productsData.map(product => (
                                     <Column md={2} className="mb-5" key={product.id} margin = "1-0-0-0">
-                                        <TargetLink>
+                                        <TargetLink to="/product">
                                             <ProductCard
                                                 productImage = {product.productImg}
                                                 title = {product.productTitle}

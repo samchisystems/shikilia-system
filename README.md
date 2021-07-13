@@ -1,3 +1,5 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/097b86e0e59d439a9a18f2bb0bb9546b)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=samchisystems/shikilia-system&amp;utm_campaign=Badge_Grade)
+
 # Shikilia-System
 
 ## Table of Contents
@@ -19,7 +21,7 @@ The technologies used to crate this system are the following :
  ```
  Shikilia-System/
   Shikilia-Ecommerce/
-    README.md
+   README.md
     public/
       index.html
     src/

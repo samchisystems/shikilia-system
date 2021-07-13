@@ -5,6 +5,8 @@ import Footer from '../common-components/Footer'
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { productsData } from '../../Data/productsData';
+import ProductCard from '../common-components/ProductCard';
 
 function Product() {
     const [quantity, setQuantity] = useState(1);
@@ -242,6 +244,35 @@ function Product() {
                 </Container>
             </Section>
 
+            {/* Similar Products */}
+            <Section margin="1-0-0-0" padding="0-7.5-0-7.5" >
+                <Container display="flex" backgroundColor="white">
+                    <Cards>
+                        <Container>
+                            <Title3 color="Default" margin="1-1-0-0">Similar Products</Title3>
+                        </Container>
+
+                        {/* Product cards */}
+                        <Container display="flex">
+                            {/* Product Card */}
+                            <Rows>
+                                {productsData.map(product => (
+                                    <Column md={2} className="mb-5" key={product.id} margin = "1-0-0-0">
+                                        <TargetLink to="/product">
+                                            <ProductCard
+                                                productImage = {product.productImg}
+                                                title = {product.productTitle}
+                                                currentPrice = {product.currentPrice}
+                                                previousPrice = {product.previousPrice}
+                                            />
+                                        </TargetLink>
+                                    </Column>
+                                ))}
+                            </Rows>
+                        </Container>
+                    </Cards>
+                </Container>
+            </Section>
             {/* Footer */}
             <Section>
                 <Footer/>

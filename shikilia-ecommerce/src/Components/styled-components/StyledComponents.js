@@ -2,8 +2,7 @@ import styled, { css }  from 'styled-components/macro';
 import { Col, Row, Button, Card } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
 import Modal from '@material-ui/core/Modal';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Link } from 'react-router-dom'
 
 
 export const Section = styled.section`
@@ -32,15 +31,20 @@ export const Container = styled.div`
     )};
     margin: ${({margin}) => (
         margin === "0-0-0--6" ? "0rem 0rem 0rem -6rem !important" : "0rem 0rem 0rem 0rem" &&
+        margin === "1-0-0-0" ? "1rem 0rem 0rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
         margin === "0-0-2-0" ? "0rem 0rem 2rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
         margin === "2-0-0-0" ? "2rem 0rem 0rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
         margin === "2-2-1-0" ? "2rem 2rem 1rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
         margin === "2-2-1-0" ? "2rem 2rem 1rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
         margin === "2-2-1-5" ? "0rem 0rem 2rem 0rem !important" : "0rem 0rem 0rem 0rem" &&
+        margin === "0.7-2-0-2" ? "0.7rem 2rem 0rem 2rem !important" : "0rem 0rem 0rem 0rem" &&
+        margin === "1.5-2-0-2" ? "1.5rem 2rem 0rem 2rem !important" : "0rem 0rem 0rem 0rem" &&
         margin === "2-0-0-0" ? "2rem 0rem 0rem 0rem !important" : "0rem 0rem 0rem 0rem"
     )};
     padding: ${({padding}) => (
+        padding === "0.5-0-0.5-0" ? "0.2rem 0rem 0.2rem 0rem" : "0rem 0rem 0rem 0rem !important" &&
         padding === "1-0-1-0" ? "1rem 0rem 1rem 0rem" : "0rem 0rem 0rem 0rem !important" &&
+        padding === "1-1-1-1" ? "1rem 2rem 1rem 2rem" : "0rem 0rem 0rem 0rem !important" &&
         padding === "3-0-3-0" ? "3rem 0rem 3rem 0rem" : "0rem 0rem 0rem 0rem !important"
     )};
     background: ${({backgroundColor}) => (
@@ -48,6 +52,7 @@ export const Container = styled.div`
         backgroundColor === "primary" ? "#5e72e4" : 'transparent' 
     )};
     width: ${({width}) => (
+        width === "150" ? "150px !important" : "100%" &&
         width === "99" ? "290px !important" : "100%" &&
         width === "850" ? "850px !important" : "100%" &&
         width === "280" ? "280px !important" : "100%"
@@ -129,16 +134,22 @@ export const Placeholder = styled.p`
     )};
     margin: ${({margin}) => (
         margin === "0-0-0-0" ? "1rem 0rem 0rem 0rem !important" : "0px 0px 0px 0px" &&
+        margin === "0.5-0-0-0" ? "0.5rem 0rem 0rem 0rem !important" : "0px 0px 0px 0px" &&
         margin === "1-0-0-0" ? "1rem 0rem 0rem 0rem !important" : "0px 0px 0px 0px" &&
         margin === "0.3-0-0-0.5" ? "0.3rem 0rem 0rem 0.5rem !important" : "0px 0px 0px 0px" &&
         margin === "0.5-0-0-0.5" ? "0.2rem 0rem 0rem 0.5rem !important" : "0px 0px 0px 0px" &&
         margin === "0.5-0-1-0.5" ? "0.2rem 0rem 1rem 0.5rem !important" : "0px 0px 0px 0px"
+    )};
+    padding: ${({padding}) => (
+        padding === "0-2-0-0" ? "0rem 2rem 0rem 0rem !important" : "0rem 0rem 0rem 0rem !important" &&
+        padding === "0-3-0-0" ? "0rem 3rem 0rem 0rem !important" : "0rem 0rem 0rem 0rem !important"
     )};
     text-align: ${({textAlign}) => (
         textAlign === "center" ? "center" : ""
     )};
     font-size: ${({fontSize}) => (
         fontSize === "25" ? "25px" : "17px" &&
+        fontSize === "30" ? "30px" : "17px" &&
         fontSize === "21" ? "21px" : "17px"
     )};
 `;
@@ -147,7 +158,7 @@ export const Placeholder = styled.p`
 export const Form = styled.form``;
 
 
-export const TargetLink = styled.a`
+export const TargetLink = styled(Link)`
     display: ${({display}) => (
         display === "flex" ? "flex" : "block" 
     )};
@@ -210,10 +221,12 @@ export const Image = styled.img`
         height === "50" ? "50px" : "100%" &&
         height === "80" ? "80px" : "100%" &&
         height === "150" ? "250px" : "100%" &&
+        height === "450" ? "450px" : "100%" &&
         height === "555" ? "555px" : "100%"
     )};
     width: ${({width}) => (
         width === "20" ? "20px" : "100%" &&
+        width === "80" ? "80px" : "100%" &&
         width === "125" ? "125px" : "100%" &&
         width === "200" ? "200px" : "100%"&&
         width === "360" ? "360px" : "100%"
@@ -222,6 +235,7 @@ export const Image = styled.img`
         margin === "1-0-0-0" ? "1rem 0rem 0rem 0rem" : "0rem 0rem 0rem 0rem" &&
         margin === "1-0-0-1" ? "1rem 0rem 0rem 1rem" : "0rem 0rem 0rem 0rem" &&
         margin === "2-0-2-0" ? "2rem 0rem 2rem 0rem" : "0rem 0rem 0rem 0rem" &&
+        margin === "2-1-2-1" ? "2rem 1rem 2rem 1rem" : "0rem 0rem 0rem 0rem" &&
         margin === "1-5-0-0" ? "1rem -10rem 0rem 0rem" : "0rem 0rem 0rem 0rem" 
     )};
     filter: ${({dropShadow}) => (
@@ -240,7 +254,11 @@ export const Rows = styled(Row)`
         height === "148" ? "130px" : "100%"
     )};
     margin: ${({margin}) => (
-        margin === "3-0-0-5" ? "3rem 0rem 0rem 5rem" : "0rem 0rem 0rem 0rem"
+        margin === "3-0-0-5" ? "3rem 0rem 0rem 5rem" : "0rem 0rem 0rem 0rem" &&
+        margin === "1.5-10-0-10" ? "1.5rem 10rem 0rem 10rem" : "0rem 0rem 0rem 0rem"
+    )};
+    padding: ${({padding}) => (
+        padding === "3-0-0-5" ? "5rem 0re 0rem 0rem !important" : "0rem 0rem 0rem 0rem"
     )};
     background: ${({backgroundColor}) => (
         backgroundColor === "Default" ? "#172b4d" : 'transparent' &&

@@ -47,7 +47,7 @@ function Footer() {
     const [email, setEmail] = useState();
 
     return (
-        <Section>
+        <Section margin="1-0-0-0">
             {/* Section One - Email Subsription */}
             <Section backgroundColor="primary">
                 <Container display="flex" padding="3-0-3-0" margin="2-2-1-5">

@@ -1,8 +1,30 @@
-import React from 'react'
-import { Cards, Column, Container, Image, Placeholder, Rows, Section, TargetLink } from '../styled-components/StyledComponents'
+import React, { useState, useEffect } from 'react'
+import { Buttons, Cards, Column, Container, Image, Placeholder, Rows, Section, TargetLink, Title1, Title2, Title3 } from '../styled-components/StyledComponents'
 import Navigation from '../common-components/Navigation'
+import Footer from '../common-components/Footer'
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 function Product() {
+    const [quantity, setQuantity] = useState(1);
+    const [baseRate, setBaseRate] = useState(1500);
+    const [totalRate, setTotalRate] = useState(baseRate)
+
+    const addQuantity = () => {
+        setQuantity(quantity + 1)
+    }
+    const subtractQuantity = () => {
+        setQuantity(quantity - 1);
+        if (quantity <= 1){
+            setQuantity(1)
+        }
+    }
+
+    useEffect(() => {
+        setTotalRate(baseRate * quantity)
+    }, [quantity]);
+
     return (
         <Section>
             {/* Navigation section*/}
@@ -63,10 +85,166 @@ function Product() {
 
                         {/* Description Section */}
                         <Column md={5} sm={12}>
-                            <Cards>Hello</Cards>
+                            <Cards>
+                                {/* Store from / Vendor Name */}
+                                <Container 
+                                    backgroundColor="Default"
+                                    width="150"
+                                    display="flex"
+                                    padding="0.5-0-0.5-0"
+                                    margin="1.5-2-0-2"
+                                >
+                                    <Placeholder>STORE NAME</Placeholder>
+                                </Container>
+
+                                {/* Product Title & Description*/}
+                                <Container
+                                    margin="0.7-2-0-2"
+                                >
+                                    {/* Product Title */}
+                                    <Title3 color="Default">Leather Bifold Wallet - Black</Title3>
+
+                                    {/* Description */}
+                                    <Placeholder 
+                                        color="Default" 
+                                        margin="1-0-0-0"
+                                        padding="0-2-0-0"
+                                    >
+                                        Made from premium cow leather and vegetable tanned to achieve a smooth and premium feel. This is part of our Lux Collection which features products made from the best materials and with the finest craftsmanship. 
+                                    </Placeholder>
+
+                                    {/* Features */}
+                                    <ul>
+                                        {
+                                            [
+                                                "Premium cow leather",
+                                                "Vegetable tanned",
+                                                "9cm width x 10cm height",
+                                                "4 main card slots",
+                                                "2 larger slots for additional cards",
+                                                "Cash compartment"
+                                            ].map((feature, index) => (
+                                                <li key={index}>
+                                                    <Placeholder
+                                                        color="Default"
+                                                        padding="0-2-0-0"
+                                                        margin="0.5-0-0-0"
+                                                    >
+                                                        {feature}
+                                                    </Placeholder>
+                                                </li>
+                                            ))
+                                        }
+                                    </ul>
+
+                                    {/* Any other information */}
+                                    <Placeholder
+                                        color="Default"
+                                        padding="0-2-0-0"
+                                    >
+                                        Please note: Due to leather being a natural material, it will patina well over weeks and months.
+                                    </Placeholder>
+                                </Container>
+
+                                {/* QUANTITY */}
+                                <Container 
+                                    margin="1.5-2-0-2"
+                                >
+                                    <Placeholder color="Default">QUANTITY</Placeholder>
+
+                                    {/* Add and subtract quantity */}
+                                    <Container
+                                        width="150"
+                                        margin="1-0-0-0"
+                                    >
+                                        <Rows>
+                                            {/* Remove Button */}
+                                            <Column md={2} sm={2}>
+                                                <Container display="flex">
+                                                    <TargetLink 
+                                                        color="Default" 
+                                                        hoverColor="primary"
+                                                        onClick={subtractQuantity}
+                                                    >
+                                                        <RemoveIcon/>
+                                                    </TargetLink>
+                                                </Container>
+                                            </Column>
+
+                                            {/* Quantity */}
+                                            <Column md={7} sm={8}>
+                                                <Container display="flex">
+                                                    <Placeholder color="Default" fontSize="21">
+                                                        {quantity}
+                                                    </Placeholder>
+                                                </Container>
+                                            </Column>
+
+                                            {/* Add Quantity */}
+                                            <Column md={2} sm={2}>
+                                                <Container display="flex">
+                                                    <TargetLink 
+                                                        color="Default" 
+                                                        hoverColor="primary"
+                                                        onClick={addQuantity}
+                                                    >
+                                                        <AddIcon/>
+                                                    </TargetLink>
+                                                </Container> 
+                                            </Column>
+                                        </Rows>
+                                    </Container>
+                                </Container>
+
+                                {/* Total Amount Price  */}
+                                <Container
+                                    margin="0.7-2-0-2"
+                                >
+                                    <Placeholder color="Default" fontSize="30">
+                                        KSh {totalRate.toLocaleString()}.00
+                                    </Placeholder>
+                                </Container>
+
+                                {/* Add to cart button */}
+                                <Container display="flex" padding="1-1-1-1">
+                                    <Buttons
+                                        width="100"
+                                        background = "Default"
+                                        padding="1-1-1-1"
+                                        hoverBackground="primary"
+                                    >
+                                        <ShoppingCartIcon/> ADD TO CART
+                                    </Buttons>
+                                </Container>
+
+                                {/* Delivery & Warranty Details */}
+                                <Container margin="0.7-2-0-2">
+                                    <ul>
+                                       {
+                                            [
+                                                "FREE SHIPPING on qualifying orders. You can find out shipping cost at checkout. We ship worldwide.",
+                                                "30 Day Returns",
+                                                "1 Year Warranty"
+                                            ].map((details, index) => (
+                                                <li key={index}>
+                                                    <Placeholder color="Default" padding="0-3-0-0">
+                                                        {details}
+                                                    </Placeholder>
+                                                </li>
+                                            ))
+                                        } 
+                                    </ul>
+                                    
+                                </Container>
+                            </Cards>
                         </Column>
                     </Rows>  
                 </Container>
+            </Section>
+
+            {/* Footer */}
+            <Section>
+                <Footer/>
             </Section>
         </Section>
     )

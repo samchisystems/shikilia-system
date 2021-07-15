@@ -159,6 +159,7 @@ function Navigation() {
                     >
                         {productCategorysData.map(productCategory => (
                             <TargetLink 
+                                to="/category"
                                 key = {productCategory.id}
                                 margin = "1-2-0-1"
                                 hoverColor = "Default"

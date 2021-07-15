@@ -53,7 +53,7 @@ export const Container = styled.div`
     )};
     width: ${({width}) => (
         width === "150" ? "150px !important" : "100%" &&
-        width === "99" ? "290px !important" : "100%" &&
+        width === "200" ? "200px !important" : "100%" &&
         width === "850" ? "850px !important" : "100%" &&
         width === "280" ? "280px !important" : "100%"
     )};

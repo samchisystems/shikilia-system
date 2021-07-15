@@ -45,15 +45,18 @@ export const Container = styled.div`
         padding === "0.5-0-0.5-0" ? "0.2rem 0rem 0.2rem 0rem" : "0rem 0rem 0rem 0rem !important" &&
         padding === "1-0-1-0" ? "1rem 0rem 1rem 0rem" : "0rem 0rem 0rem 0rem !important" &&
         padding === "1-1-1-1" ? "1rem 2rem 1rem 2rem" : "0rem 0rem 0rem 0rem !important" &&
-        padding === "3-0-3-0" ? "3rem 0rem 3rem 0rem" : "0rem 0rem 0rem 0rem !important"
+        padding === "3-0-3-0" ? "3rem 0rem 3rem 0rem" : "0rem 0rem 0rem 0rem !important" &&
+        padding === "0.5-0.5-0.5-0.5" ? "0.5rem 0.5rem 0.5rem 0.5rem" : "0rem 0rem 0rem 0rem !important"
     )};
     background: ${({backgroundColor}) => (
         backgroundColor === "Default" ? "#172b4d" : 'transparent' &&
-        backgroundColor === "primary" ? "#5e72e4" : 'transparent' 
+        backgroundColor === "primary" ? "#5e72e4" : 'transparent'  &&
+        backgroundColor === "cream" ? "#E5E5E5" : "transparent"
     )};
     width: ${({width}) => (
         width === "150" ? "150px !important" : "100%" &&
         width === "200" ? "200px !important" : "100%" &&
+        width === "400" ? "600px !important" : "100%" &&
         width === "850" ? "850px !important" : "100%" &&
         width === "280" ? "280px !important" : "100%"
     )};
@@ -311,7 +314,6 @@ export const Buttons = styled(Button)`
         padding === "2-2-2-2" ? "1.5rem 1.5rem 1.5rem 1.5rem" : "0rem 0rem 0rem 0rem" &&
         padding === "0.8-1-0.8-1" ? "0.8rem 1rem 0.8rem 1rem" : "0rem 0rem 0rem 0rem" 
     )};
-    z-index: 10000000;
     transition: .3s all;
 
     &:hover {
@@ -347,5 +349,4 @@ export const Cards = styled(Card)`
 export const InputField = styled(TextField)``;
 
 export const Modals =styled(Modal)`
-    
 `;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Image, Placeholder, TargetLink, Form, Rows, Buttons, Container, Modals, Column, Title1 } from '../styled-components/StyledComponents';
+import { Image, Placeholder, TargetLink, Form, Rows, Buttons, Container, Modals, Column, Title1, Title3 } from '../styled-components/StyledComponents';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
@@ -14,6 +14,8 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import AppleIcon from '@material-ui/icons/Apple';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import { CartData } from '../../Data/CartData';
+import AddIcon from '@material-ui/icons/Add';
 // import socialLogins from '../../Data/modalData'
 
 
@@ -26,8 +28,7 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        boxShadow: theme.shadows[5]
     },
 }));
 
@@ -40,6 +41,7 @@ function ModalCard({modal, status, onClose}) {
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [modalType, setModalType] = useState(modal);
+    // const [modalType, setModalType] = useState('cart');
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
     const [showPassword, setShowPassword] = useState(false);
@@ -378,6 +380,144 @@ function ModalCard({modal, status, onClose}) {
                                             </Container>
                                         </Column>
                                     </Rows>
+                                </Container>
+                            </div>
+                        </Fade>
+                    </Modals>    
+                ) : 
+                (
+                    <React.Fragment></React.Fragment>
+                ) &&
+
+                modalType === "cart" ? 
+                (
+                    <Modals
+                        aria-labelledby="transition-modal-title"
+                        aria-describedby="transition-modal-description"
+                        className={classes.modal}
+                        open={open}
+                        onClose={() => setOpen(!open)}
+                        closeAfterTransition
+                        BackdropComponent={Backdrop}
+                        BackdropProps={{
+                                timeout: 500,
+                        }}
+                    >
+                        <Fade in={open}>
+                            <div className={classes.paper}>
+                                <Container 
+                                    backgroundColor="Default" 
+                                    display="flex" 
+                                    width="400"
+                                >
+                                    <Container display="flex" justifyContent="start" padding="1-1-1-1">
+                                        <Placeholder >My Cart</Placeholder>
+                                        <Placeholder className="ml-2">{`( 1 Item )`}</Placeholder>
+                                    </Container>
+                                    <Container display="flex" justifyContent="end" padding="1-1-1-1">
+                                       <Buttons hoverColor="primary" onClick={() => setOpen(!open)}>
+                                            <CloseIcon/> 
+                                        </Buttons> 
+                                    </Container>
+                                </Container>
+
+                                {/* Products */}
+                                <Container padding="1-1-1-1">
+                                    {
+                                        CartData.map(data => (
+                                            <Rows key={data.id} className="mt-3">
+                                                {/* Product Image */}
+                                                <Column md={3} sm={3}>
+                                                    <Image
+                                                        src={data.image}
+                                                        alt={data.productTitle}
+                                                        height="80"
+                                                        width="80"
+                                                    />
+                                                </Column>
+
+                                                {/* Product Description */}
+                                                <Column md={8} sm={8}>
+                                                    {/* product title */}
+                                                    <Placeholder color="Default">{data.productTitle}</Placeholder> 
+
+                                                    {/* Quantity */}
+                                                    <Container>
+                                                        <Rows width="100">
+                                                            {/* Price */}
+                                                            <Column md={6} sm={12} display="flex" justifyContent="start">
+                                                                <Placeholder color="Default">{`KSh ${data.basePrice.toLocaleString()}.00`}</Placeholder>
+                                                            </Column>
+                                                            <Column md={6} sm={12} display="flex" justifyContent="end">
+                                                                <Container display="flex" height="35">
+                                                                    <Buttons background="Default" hoverBackground="primary" hoverColor="primary">
+                                                                        <AddIcon/>
+                                                                    </Buttons>
+                                                                    <Placeholder color="Default" className="ml-3"> {data.quantity} </Placeholder>
+                                                                    <Buttons background="Default" hoverBackground="primary" hoverColor="primary" className="ml-3">
+                                                                        <AddIcon/>
+                                                                    </Buttons>
+                                                                </Container>
+                                                            </Column>
+                                                        </Rows>
+                                                    </Container>
+                                                </Column>
+
+                                                {/* Remove Product */}
+                                                <Column md={1} sm={1}>
+                                                    <Buttons color="Default" hoverColor="primary">
+                                                        <CloseIcon/> 
+                                                    </Buttons>
+                                                    
+                                                </Column>
+                                            </Rows>
+                                        ))
+                                    }
+                                </Container>
+
+                                <Container backgroundColor="cream" padding="1-1-1-1">
+                                    {/* Sub total */}
+                                    <Rows>
+                                        <Column md={6} sm={6} display="flex" justifyContent="start">
+                                            <Placeholder color="Default">Sub-total :</Placeholder>
+                                        </Column>
+                                        <Column md={6} sm={6} display="flex" justifyContent="end">
+                                            <Placeholder color="Default">{`KShs 5,000.00`}</Placeholder>
+                                        </Column>
+                                    </Rows>
+
+                                    {/* Delivery Charges */}
+                                    <Rows>
+                                        <Column md={6} sm={6} display="flex" justifyContent="start">
+                                            <Placeholder color="Default">Delivery Charges :</Placeholder>
+                                        </Column>
+                                        <Column md={6} sm={6} display="flex" justifyContent="end">
+                                            <Placeholder color="Default">{`KShs 500.00`}</Placeholder>
+                                        </Column>
+                                    </Rows>
+
+                                    {/* Total Amount */}
+                                    <Rows>
+                                        <Column md={6} sm={6} display="flex" justifyContent="start">
+                                            <Placeholder color="Default">Total Amount :</Placeholder>
+                                        </Column>
+                                        <Column md={6} sm={6} display="flex" justifyContent="end">
+                                            <Placeholder color="Default">{`KShs 5,500.00`}</Placeholder>
+                                        </Column>
+                                    </Rows>
+
+                                    <Container display="flex">
+                                        <Buttons 
+                                            background="Default" 
+                                            hoverBackground="primary" 
+                                            width="100"
+                                            padding="1-1-1-1"
+                                            margin="1-0-0-0"
+                                        >
+                                            CHECKOUT
+                                        </Buttons>
+                                    </Container>
+                                    
                                 </Container>
                             </div>
                         </Fade>

@@ -19,3 +19,5 @@ const firebaseAnalytics = firebase.analytics();
 
 
 export default  firebaseAnalytics;
+
+// i have added this line

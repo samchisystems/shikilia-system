@@ -4,6 +4,8 @@ import { Buttons, InputField, Column, Rows, Container, Section, Image, Placehold
 import SearchIcon from '@material-ui/icons/Search';
 import { aboutShikiliaData, aboutVendorsData, helpData } from '../../Data/footerData';
 
+import {Link, useHistory, useLocation} from 'react-router-dom'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -55,12 +57,22 @@ function Footer() {
                         {/* Logo */}
                         <Column md={6}>
                             <Container display="flex" alignItems={true}>
-                                <Image 
+                            <Link to="/">
+                        <img
+                            className="footer__logo"
+                            src="https://res.cloudinary.com/emacon-production/image/upload/v1623146015/Shikilia/Shikilia_Stores_Logo_zdzer3.png"
+                            alt = "Shikilia Logo"
+                            height = "80"
+                            width="200"
+                        />
+                        {/* ets see */}
+                    </Link>
+                                {/* <Image 
                                     src = "https://res.cloudinary.com/emacon-production/image/upload/v1623146015/Shikilia/Shikilia_Stores_Logo_zdzer3.png" 
                                     alt = "Shikilia Logo"
                                     height = "80"
                                     width="200"
-                                />
+                                /> */}
                             </Container>
                         </Column>
                         <Column md={6}>

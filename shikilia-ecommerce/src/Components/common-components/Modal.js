@@ -15,7 +15,21 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import AppleIcon from '@material-ui/icons/Apple';
 import GitHubIcon from '@material-ui/icons/GitHub';
 // import socialLogins from '../../Data/modalData'
+/* import socialMediaAuth from '../../services/auth';
+import GoogleProvider from '../../config/authMethods';
+import AppleProvider from '../../config/authMethods';
+import FacebookProvider from '../../config/authMethods';
+import TwitterProvider from '../../config/authMethods';
+import GithubProvider from '../../config/authMethods';
+ */
 
+import  firebase from 'firebase';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+
+// const handleOnClick = async (provider) => {
+//     const res = await socialMediaAuth(provider);
+//     console.log(res);
+// };
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -186,7 +200,9 @@ function ModalCard({modal, status, onClose}) {
                                                         >
                                                             
                                                             <Container>
-                                                                {socialLogin.typeOfIcon === "image" ? 
+                                                            
+                                                        
+                                                                {/* {socialLogin.typeOfIcon === "image" ? 
                                                                     (
                                                                         <Image 
                                                                             className="mr-3"
@@ -195,24 +211,33 @@ function ModalCard({modal, status, onClose}) {
                                                                             width ="20"
                                                                             height="20"
                                                                             transform = {true}
+                                                                            
                                                                         />
                                                                     ):(
                                                                         <React.Fragment>
                                                                             {
                                                                                 socialLogin.alt === "Facebook" ? 
-                                                                                <FacebookIcon className="mr-3"/> 
+                                                                                <FacebookIcon className="mr-3"
+                                                                                // onClick={()=> handleOnClick(FacebookProvider) }
+                                                                                /> 
                                                                                 : 
                                                                                 (<></>) &&
                                                                                 socialLogin.alt === "Twitter" ? 
-                                                                                <TwitterIcon className="mr-3"/> 
+                                                                                <TwitterIcon className="mr-3"
+                                                                                // onClick={()=> handleOnClick(TwitterProvider) }
+                                                                                /> 
                                                                                 : 
                                                                                 (<></>) &&
                                                                                 socialLogin.alt === "Apple-Id" ? 
-                                                                                <AppleIcon className="mr-3"/> 
+                                                                                <AppleIcon className="mr-3"
+                                                                                // onClick={()=> handleOnClick(AppleProvider) }
+                                                                                /> 
                                                                                 : 
                                                                                 (<></>) &&
                                                                                 socialLogin.alt === "Github" ? 
-                                                                                <GitHubIcon className="mr-3"/> 
+                                                                                <GitHubIcon className="mr-3"
+                                                                                // onClick={()=> GithubProvider }
+                                                                                /> 
                                                                                 : 
                                                                                 (<></>) 
                                                                             }
@@ -220,7 +245,7 @@ function ModalCard({modal, status, onClose}) {
                                                                     )
                                                                 }
                                                             
-                                                               {socialLogin.placeHolder} 
+                                                               {socialLogin.placeHolder}  */}
                                                             </Container>
                                                             
                                                         </Buttons>

@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
+import {Link, useHistory, useLocation} from 'react-router-dom'
 import { productCategorysData, topMenuData } from '../../Data/menuData'
 import { Placeholder, Buttons, InputField, Column, Container, Image, Rows, Section, TargetLink } from '../styled-components/StyledComponents'
 import PersonIcon from '@material-ui/icons/Person';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import CheckIcon from '@material-ui/icons/Check';
 import SearchIcon from '@material-ui/icons/Search';
+
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ModalCard from './Modal';
-
+import firebase from 'firebase';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'; 
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -106,12 +109,21 @@ function Navigation() {
                         display = "flex"
                         margin = "0-0-0-0"
                     >
-                        <Image 
-                            src = "https://res.cloudinary.com/emacon-production/image/upload/v1623146015/Shikilia/Shikilia_Stores_Logo_zdzer3.png" 
+                     <Link to="/">
+                        <img
+                            className="header__logo"
+                            src="https://res.cloudinary.com/emacon-production/image/upload/v1623146015/Shikilia/Shikilia_Stores_Logo_zdzer3.png"
                             alt = "Shikilia Logo"
                             height = "50"
                             width="125"
                         />
+                    </Link>
+                        {/* <Image 
+                            src = "https://res.cloudinary.com/emacon-production/image/upload/v1623146015/Shikilia/Shikilia_Stores_Logo_zdzer3.png" 
+                            alt = "Shikilia Logo"
+                            height = "50"
+                            width="125"
+                        /> */}
                     </Column>
 
                     {/* Search Input Field */}
@@ -137,6 +149,25 @@ function Navigation() {
                         <TargetLink 
                             margin = "2-0-0-0"
                             hoverColor="primary"
+
+                            // whether th user decides to checkout the cart userZZZ 
+                             onClick={() =>
+                             <div className="CartLoginCheck">
+                             {this.state.isSignedIn ? (
+                                  <Link to="/"/>
+                             )
+                             :
+                             (
+
+                                 <StyledFirebaseAuth
+                                 uiConfig= {this.uiConfig}
+                                 firebaseAuth={firebase.auth()}
+                                 />
+                             )
+                             }
+                             
+                             </div>
+                             }
                         >
                             <ShoppingCartIcon/>
                             My Cart | Ksh 1,000,000.00

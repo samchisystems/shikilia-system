@@ -224,6 +224,7 @@ export const Image = styled.img`
         height === "50" ? "50px" : "100%" &&
         height === "80" ? "80px" : "100%" &&
         height === "150" ? "250px" : "100%" &&
+        height === "250" ? "250px" : "100%" &&
         height === "450" ? "450px" : "100%" &&
         height === "555" ? "555px" : "100%"
     )};
@@ -232,7 +233,8 @@ export const Image = styled.img`
         width === "80" ? "80px" : "100%" &&
         width === "125" ? "125px" : "100%" &&
         width === "200" ? "200px" : "100%"&&
-        width === "360" ? "360px" : "100%"
+        width === "360" ? "360px" : "100%" &&
+        width === "300" ? "300px" : "100%"
     )};
     margin: ${({margin}) => (
         margin === "1-0-0-0" ? "1rem 0rem 0rem 0rem" : "0rem 0rem 0rem 0rem" &&

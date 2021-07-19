@@ -4,6 +4,7 @@ import CategoryTypes from './Components/CategoryPage/CategoryTypes';
 import ScrollToTop from './Components/common-components/ScrollToTop';
 import Home from "./Components/Home/Home";
 import Product from "./Components/Product-Page/Product";
+import ThankYou from './Components/ThankyouPage/ThankYou';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/product" component={Product}/>
             <Route path="/category-type" component={CategoryTypes}/>
             <Route path="/category" component={CategoryPage}/>
+            <Route path="/thank-you" component={ThankYou}/>
           </Switch>
         </ScrollToTop>
       </div>

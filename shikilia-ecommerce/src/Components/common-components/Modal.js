@@ -22,7 +22,7 @@ import GoogleProvider from '../../config/authMethods';
 import AppleProvider from '../../config/authMethods';
 import FacebookProvider from '../../config/authMethods';
 import TwitterProvider from '../../config/authMethods';
-import GithubProvider from '../../config/authMethods';
+import GithubProvider from '../../config/authMethods';z
  */
 
 import  firebase from 'firebase';

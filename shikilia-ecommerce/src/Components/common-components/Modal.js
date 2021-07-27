@@ -16,17 +16,14 @@ import AppleIcon from '@material-ui/icons/Apple';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { CartData } from '../../Data/CartData';
 import AddIcon from '@material-ui/icons/Add';
-// import socialLogins from '../../Data/modalData'
-/* import socialMediaAuth from '../../services/auth';
-import GoogleProvider from '../../config/authMethods';
-import AppleProvider from '../../config/authMethods';
-import FacebookProvider from '../../config/authMethods';
-import TwitterProvider from '../../config/authMethods';
-import GithubProvider from '../../config/authMethods';z
- */
-
 import  firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import Firebase, { UNAUTHENTICATED, AUTHENTICATED_ANONYMOUSLY }  from '.config/firebase';
+import AuthStateProvider from '.config/AuthStateContext';
+import { useAuthStateContext } from '.config/AuthStateContext';
+import {Link, useHistory, useLocation} from 'react-router-dom'
+
+
 
 // const handleOnClick = async (provider) => {
 //     const res = await socialMediaAuth(provider);
@@ -45,6 +42,23 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: theme.shadows[5]
     },
 }));
+
+const LoginExample = ({}) => {
+  const { authState,  signInWithFacebook, signInWithGoogle, signOut } = useAuthStateContext();
+  const userIsLoggedIn = authState.status !== UNAUTHENTICATED && authState.status !== AUTHENTICATED_ANONYMOUSLY;
+  return (
+    <div>
+      {!userIsLoggedIn ? <div>
+        <button onClick={signInWithGoogle}>
+          Log in with Google
+        </button>
+        <button onClick={signInWithFacebook} style={{margin: "20px"}}>
+          Log in with Facebook
+        </button>
+      </div>
+      : <Link to="/"/> }
+  </div>)
+}
 
 
 function ModalCard({modal, status, onClose}) {
@@ -204,50 +218,18 @@ function ModalCard({modal, status, onClose}) {
                                                             <Container>
                                                             
                                                         
-                                                                {/* {socialLogin.typeOfIcon === "image" ? 
-                                                                    (
-                                                                        <Image 
-                                                                            className="mr-3"
-                                                                            src={socialLogin.icon} 
-                                                                            alt={socialLogin.alt}
-                                                                            width ="20"
-                                                                            height="20"
-                                                                            transform = {true}
-                                                                            
-                                                                        />
-                                                                    ):(
-                                                                        <React.Fragment>
-                                                                            {
-                                                                                socialLogin.alt === "Facebook" ? 
-                                                                                <FacebookIcon className="mr-3"
-                                                                                // onClick={()=> handleOnClick(FacebookProvider) }
-                                                                                /> 
-                                                                                : 
-                                                                                (<></>) &&
-                                                                                socialLogin.alt === "Twitter" ? 
-                                                                                <TwitterIcon className="mr-3"
-                                                                                // onClick={()=> handleOnClick(TwitterProvider) }
-                                                                                /> 
-                                                                                : 
-                                                                                (<></>) &&
-                                                                                socialLogin.alt === "Apple-Id" ? 
-                                                                                <AppleIcon className="mr-3"
-                                                                                // onClick={()=> handleOnClick(AppleProvider) }
-                                                                                /> 
-                                                                                : 
-                                                                                (<></>) &&
-                                                                                socialLogin.alt === "Github" ? 
-                                                                                <GitHubIcon className="mr-3"
-                                                                                // onClick={()=> GithubProvider }
-                                                                                /> 
-                                                                                : 
-                                                                                (<></>) 
-                                                                            }
-                                                                        </React.Fragment>
-                                                                    )
-                                                                }
-                                                            
-                                                               {socialLogin.placeHolder}  */}
+                                                                <AuthStateProvider Firebase={new Firebase({ 
+          API_KEY: "AIzaSyD-xwJe109FDqICiVVBBi2AGd63NdmEgjQ",
+          AUTH_DOMAIN:"shikilia-e-commerce.firebaseapp.com",
+          DATABASE_URL: "https://shikilia-system-default-rtdb.firebaseio.com",
+          PROJECT_ID: "shikilia-e-commerce",
+          STORA_BUCKET: "shikilia-e-commerce.appspot.com",
+          MESSASING_SENDER_ID:"792280871913",
+          APP_ID: "1:792280871913:web:672d8a3fbc96edfbf95178",
+          MEASUREMENT_ID: "G-RLTN8KEDSM"
+        })}>
+          <LoginExample />
+        </AuthStateProvider>
                                                             </Container>
                                                             
                                                         </Buttons>

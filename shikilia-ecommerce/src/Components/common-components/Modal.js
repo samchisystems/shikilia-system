@@ -16,17 +16,13 @@ import AppleIcon from '@material-ui/icons/Apple';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { CartData } from '../../Data/CartData';
 import AddIcon from '@material-ui/icons/Add';
-// import socialLogins from '../../Data/modalData'
-/* import socialMediaAuth from '../../services/auth';
-import GoogleProvider from '../../config/authMethods';
-import AppleProvider from '../../config/authMethods';
-import FacebookProvider from '../../config/authMethods';
-import TwitterProvider from '../../config/authMethods';
-import GithubProvider from '../../config/authMethods';z
- */
-
 import  firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import Firebase, { UNAUTHENTICATED, AUTHENTICATED_ANONYMOUSLY }  from '.config/firebase';
+import AuthStateProvider from '.config/AuthStateContext';
+import { useAuthStateContext } from '.config/AuthStateContext';
+
+
 
 // const handleOnClick = async (provider) => {
 //     const res = await socialMediaAuth(provider);

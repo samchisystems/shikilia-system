@@ -204,50 +204,7 @@ function ModalCard({modal, status, onClose}) {
                                                             <Container>
                                                             
                                                         
-                                                                {/* {socialLogin.typeOfIcon === "image" ? 
-                                                                    (
-                                                                        <Image 
-                                                                            className="mr-3"
-                                                                            src={socialLogin.icon} 
-                                                                            alt={socialLogin.alt}
-                                                                            width ="20"
-                                                                            height="20"
-                                                                            transform = {true}
-                                                                            
-                                                                        />
-                                                                    ):(
-                                                                        <React.Fragment>
-                                                                            {
-                                                                                socialLogin.alt === "Facebook" ? 
-                                                                                <FacebookIcon className="mr-3"
-                                                                                // onClick={()=> handleOnClick(FacebookProvider) }
-                                                                                /> 
-                                                                                : 
-                                                                                (<></>) &&
-                                                                                socialLogin.alt === "Twitter" ? 
-                                                                                <TwitterIcon className="mr-3"
-                                                                                // onClick={()=> handleOnClick(TwitterProvider) }
-                                                                                /> 
-                                                                                : 
-                                                                                (<></>) &&
-                                                                                socialLogin.alt === "Apple-Id" ? 
-                                                                                <AppleIcon className="mr-3"
-                                                                                // onClick={()=> handleOnClick(AppleProvider) }
-                                                                                /> 
-                                                                                : 
-                                                                                (<></>) &&
-                                                                                socialLogin.alt === "Github" ? 
-                                                                                <GitHubIcon className="mr-3"
-                                                                                // onClick={()=> GithubProvider }
-                                                                                /> 
-                                                                                : 
-                                                                                (<></>) 
-                                                                            }
-                                                                        </React.Fragment>
-                                                                    )
-                                                                }
-                                                            
-                                                               {socialLogin.placeHolder}  */}
+                                                                
                                                             </Container>
                                                             
                                                         </Buttons>

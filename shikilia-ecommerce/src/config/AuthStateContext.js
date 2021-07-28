@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { UNAUTHENTICATED } from "./config/firebase";
+import { UNAUTHENTICATED } from "../config/firebase";
 
 const AuthStateContext = createContext({
   state: UNAUTHENTICATED,
@@ -85,6 +85,8 @@ export default function AuthStateProvider({ children, Firebase }) {
     </AuthStateContext.Provider>
   );
 }
+
+
 
 export const useAuthStateContext = () => useContext(AuthStateContext);
 

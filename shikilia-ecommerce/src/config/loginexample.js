@@ -1,8 +1,6 @@
-import Firebase, { UNAUTHENTICATED, AUTHENTICATED_ANONYMOUSLY }  from './config/firebase';
-import AuthStateProvider from './config/AuthStateContext';
-import { useAuthStateContext } from './config/AuthStateContext';
-
-import {Link, useHistory, useLocation} from 'react-router-dom';
+import Firebase, { UNAUTHENTICATED, AUTHENTICATED_ANONYMOUSLY }  from '../config/firebase';
+import AuthStateProvider from '../config/AuthStateContext';
+import  useAuthStateContext  from '../config/AuthStateContext';
 
 const LoginExample = ({}) => {
   const { authState,  signInWithFacebook, signInWithGoogle, signOut } = useAuthStateContext();
@@ -17,6 +15,10 @@ const LoginExample = ({}) => {
           Log in with Facebook
         </button>
       </div>
-      :  <Link to="/"> }
+      : <button onClick={signOut}>
+        Log out {authState?.user?.displayName}
+      </button> }
   </div>)
 }
+
+export default LoginExample;

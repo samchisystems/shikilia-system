@@ -27,6 +27,9 @@ import GithubProvider from '../../config/authMethods';z
 
 import  firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import Firebase, { UNAUTHENTICATED, AUTHENTICATED_ANONYMOUSLY }  from '../../config/firebase';
+import LoginExample from '../../config/loginexample';
+import AuthStateProvider from '../../config/AuthStateContext';
 
 // const handleOnClick = async (provider) => {
 //     const res = await socialMediaAuth(provider);
@@ -203,7 +206,18 @@ function ModalCard({modal, status, onClose}) {
                                                             
                                                             <Container>
                                                             
-                                                        
+                                                               <AuthStateProvider Firebase={new Firebase({ 
+         
+                                                                    apiKey: "AIzaSyD-xwJe109FDqICiVVBBi2AGd63NdmEgjQ",
+                                                                    authDomain: "shikilia-e-commerce.firebaseapp.com",
+                                                                    projectId: "shikilia-e-commerce",
+                                                                    storageBucket: "shikilia-e-commerce.appspot.com",
+                                                                    messagingSenderId: "792280871913",
+                                                                    appId: "1:792280871913:web:672d8a3fbc96edfbf95178",
+                                                                    measurementId: "G-RLTN8KEDSM"
+                                                                    })}>
+                                                                    <LoginExample />
+                                                                    </AuthStateProvider>
                                                                 
                                                             </Container>
                                                             

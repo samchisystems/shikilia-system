@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Buttons, InputField, Column, Rows, Container, Section, Image, Placeholder, TargetLink } from '../styled-components/StyledComponents';
 import SearchIcon from '@material-ui/icons/Search';
 import { aboutShikiliaData, aboutVendorsData, helpData } from '../../Data/footerData';
-
+import {db } from '../../config/firebase';
 import {Link, useHistory, useLocation} from 'react-router-dom'
 
 
@@ -42,11 +42,29 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Footer() {
+const Footer = () => {
     const classes = useStyles();
-
-
     const [email, setEmail] = useState();
+
+    const[loader, setLoader] = useState(false);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setLoader(true)
+
+        db.collection('emailletters')
+        .add({
+            email:email,
+        })
+        .then(() =>{
+            alert("Thank you for subscribing, we will keep in touch 👍 ");
+            setLoader(false);
+        })
+        .catch((error)=> {
+            alert(error.message);
+            setLoader(false);
+        });
+        setEmail("");
+    }
 
     return (
         <Section margin="1-0-0-0">
@@ -84,16 +102,18 @@ function Footer() {
                                     <Placeholder fontSize="20">Subscribe to our newsletter to get updates on our latest offers!</Placeholder>
                                 </Container>
                                 <Container>
-                                    <form>
+                                    <form className = "form"
+                                    onSubmit= {handleSubmit}>
                                         <InputField
                                             className = {classes.root}
                                             id = "searchField"
-                                            label = "Search Here"
+                                            label = "email"
                                             type="email"
                                             value = {email}
                                             onChange = {e => setEmail(e.target.value)}
                                         />
                                         <Buttons
+                                            type="submit"
                                             className = "ml-3"
                                             background="Default"
                                             hoverColor = "Default"
@@ -174,4 +194,4 @@ function Footer() {
     )
 }
 
-export default Footer
+export default Footer;

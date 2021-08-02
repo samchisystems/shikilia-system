@@ -26,6 +26,7 @@ import GithubProvider from '../../config/authMethods';z
  */
 
 import  firebase from 'firebase';
+import {Button } from '@material-ui/core';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 // const handleOnClick = async (provider) => {
@@ -189,26 +190,9 @@ function ModalCard({modal, status, onClose}) {
                                                     Sign In with:
                                                 </Placeholder>
                                                 <Container>
-                                                    {socialLogins.map(socialLogin => (
-                                                        <Buttons 
-                                                            key={socialLogin.id}
-                                                            background = "Default"
-                                                            width="100"
-                                                            // borderRadius="20"
-                                                            margin="1-0-0-0"
-                                                            hoverBackground={socialLogin.background}
-                                                            
-
-                                                        >
-                                                            
-                                                            <Container>
-                                                            
-                                                        
-                                                                
-                                                            </Container>
-                                                            
-                                                        </Buttons>
-                                                    ))}
+                                                   <Button>
+                                                            Sign In With Google 
+                                                            </Button>
                                                 </Container>
                                             </Container>
                                         </Column>

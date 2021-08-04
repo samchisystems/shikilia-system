@@ -24,8 +24,7 @@ import FacebookProvider from '../../config/authMethods';
 import TwitterProvider from '../../config/authMethods';
 import GithubProvider from '../../config/authMethods';z
  */
-
-import  firebase from 'firebase';
+import {auth, provider} from '../../config/firebase';
 import {Button } from '@material-ui/core';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
@@ -50,7 +49,11 @@ const useStyles = makeStyles((theme) => ({
 
 function ModalCard({modal, status, onClose}) {
     const classes = useStyles();
-
+    const signIn = e => {
+        e.preventDefault();
+        auth.signInWithPopup(provider)
+        .catch(error =>alert(error.message))
+    };
 
     const [open, setOpen] = useState(false);
     const [name, setName] = useState();
@@ -190,7 +193,7 @@ function ModalCard({modal, status, onClose}) {
                                                     Sign In with:
                                                 </Placeholder>
                                                 <Container>
-                                                   <Button>
+                                                   <Button  onClick={signIn}>
                                                             Sign In With Google 
                                                             </Button>
                                                 </Container>

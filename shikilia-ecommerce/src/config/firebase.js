@@ -1,24 +1,32 @@
 import firebase from 'firebase';
 
-
- var firebaseConfig = {
-  apiKey: "AIzaSyBWXTYH0J_KCJBFDBy_QEXMzC_ba4UmiiU",
-  authDomain: "shikilia-backend.firebaseapp.com",
-  projectId: "shikilia-backend",
-  storageBucket: "shikilia-backend.appspot.com",
-  messagingSenderId: "98675150097",
-  appId: "1:98675150097:web:979328684f38203e7290b0",
-  measurementId: "G-BR5MGBD2LL"
-  };
+//firebase
+var firebaseApp = firebase.initializeApp({
+  
+    apiKey: "AIzaSyDJuG3RFXqihWN-sFBb2tA-pp_ccfKnLks",
+    authDomain: "shikilia-backend-7ec47.firebaseapp.com",
+    databaseURL: "https://shikilia-backend-7ec47-default-rtdb.firebaseio.com",
+    projectId: "shikilia-backend-7ec47",
+    storageBucket: "shikilia-backend-7ec47.appspot.com",
+    messagingSenderId: "840041591604",
+    appId: "1:840041591604:web:3913aeb98b1d12c7c16b61",
+    measurementId: "G-29LLG6M300"
+  
+})
 
 
 //initialize firebase 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const firebaseAnalytics = firebase.analytics();
 var db = firebaseApp.firestore();
-const auth = firebase.auth();
-const provider= new firebase.auth.GoogleAuthProvider();
+var auth = firebase.auth();
+var provider= new firebase.auth.GoogleAuthProvider();
 
+
+// allow sign in from anywhere
+export const signIn = e => {
+        e.preventDefault();
+        auth.signInWithPopup(provider)
+        .catch(error =>alert(error.message))
+    };
 
 
 export  {auth, provider, db };

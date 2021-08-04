@@ -10,6 +10,8 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ModalCard from './Modal';
+import {auth} from '../../config/firebase';
+import {useAuthState} from 'react-firebase-hooks/auth';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'; 
 const useStyles = makeStyles((theme) => ({
@@ -52,6 +54,9 @@ function Navigation() {
 
     const [searchInput, setSearchInput] = useState();
     const [modalStatus, setModalStatus] = useState(false);
+     const [user, loading] =useAuthState(auth);
+    // history.push()
+    const history = useHistory();
 
     const handleModal = () => {
         setModalStatus(!modalStatus)
@@ -149,24 +154,19 @@ function Navigation() {
                         <TargetLink 
                             margin = "2-0-0-0"
                             hoverColor="primary"
-
-                            // whether th user decides to checkout the cart userZZZ 
+                            
+                            //TODO: whether th user decides to checkout the cart userZZZ FINISH up with this logic again and also set modal status false
                              onClick={() =>
-                             <div className="CartLoginCheck">
-                             {this.state.isSignedIn ? (
-                                  <Link to="/"/>
-                             )
-                             :
-                             (
-
-                                 <StyledFirebaseAuth
-                                 uiConfig= {this.uiConfig}
-                                 firebaseAuth={firebase.auth()}
-                                 />
-                             )
-                             }
-                             
-                             </div>
+                             {
+                                                    !user? (
+                                                        // setModalStatus(true)
+                                                        // TODO: redirect to checkout instead of home
+                                                        history.push("/")
+                                                    ):(
+                                                        // TODO: redirect to modal I  used thankyou incase there is a user 
+                                                       setModalStatus(true)
+                                                    )
+                                                }
                              }
                         >
                             <ShoppingCartIcon/>

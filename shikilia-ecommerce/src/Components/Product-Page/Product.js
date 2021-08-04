@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import {Link, useHistory, useLocation} from 'react-router-dom';
 import { Buttons, Cards, Column, Container, Image, Placeholder, Rows, Section, TargetLink, Title1, Title2, Title3 } from '../styled-components/StyledComponents'
 import Navigation from '../common-components/Navigation'
 import Footer from '../common-components/Footer'
@@ -7,12 +8,20 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { productsData } from '../../Data/productsData';
 import ProductCard from '../common-components/ProductCard';
+import ModalCard from '../common-components/Modal';
+import {useAuthState} from 'react-firebase-hooks/auth';
+import {topMenuData } from '../../Data/menuData'
+import {auth} from '../../config/firebase';
 
 function Product() {
     const [quantity, setQuantity] = useState(1);
     const [baseRate, setBaseRate] = useState(1500);
     const [totalRate, setTotalRate] = useState(baseRate)
-
+    const [user, loading] =useAuthState(auth);
+    // history.push()
+    const history = useHistory();
+    const [modalStatus, setModalStatus] = useState(false);
+    
     const addQuantity = () => {
         setQuantity(quantity + 1)
     }
@@ -27,6 +36,9 @@ function Product() {
         setTotalRate(baseRate * quantity)
     }, [quantity]);
 
+     const handleModal = () => {
+        setModalStatus(!modalStatus)
+    };
     return (
         <Section>
             {/* Navigation section*/}
@@ -51,7 +63,7 @@ function Product() {
                     <Rows 
                         width="100"
                         margin="1.5-10-0-10"
-                    >
+                    > 
                         {/* Images Section */}
                         <Column md={7} sm={12}>
                             <Cards>
@@ -209,11 +221,27 @@ function Product() {
 
                                 {/* Add to cart button */}
                                 <Container display="flex" padding="1-1-1-1">
+                                {/* conditional rendering on click */}
                                     <Buttons
                                         width="100"
                                         background = "Default"
                                         padding="1-1-1-1"
                                         hoverBackground="primary"
+                                        onClick={
+                                            ()=>{
+                                                // TODO: is signed in state. 
+                                                {
+                                                    !user? (
+                                                        // setModalStatus(true)
+                                                        // TODO: redirect to checkout instead of home
+                                                        history.push("/")
+                                                    ):(
+                                                        // TODO: redirect to modal I  used thankyou incase there is a user 
+                                                       history.push("/thank-you")
+                                                    )
+                                                }
+                                            }
+                                        }
                                     >
                                         <ShoppingCartIcon/> ADD TO CART
                                     </Buttons>

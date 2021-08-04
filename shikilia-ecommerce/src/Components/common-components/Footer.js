@@ -63,8 +63,8 @@ const Footer = () => {
             alert(error.message);
             setLoader(false);
         });
-        setEmail("");
-    }
+        setEmail('');
+    };
 
     return (
         <Section margin="1-0-0-0">

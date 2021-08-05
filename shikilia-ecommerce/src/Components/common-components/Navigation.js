@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {Link, useHistory, useLocation} from 'react-router-dom'
 import { productCategorysData, topMenuData } from '../../Data/menuData'
@@ -7,7 +8,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import CheckIcon from '@material-ui/icons/Check';
 import SearchIcon from '@material-ui/icons/Search';
-
+import styled from 'styled-components';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ModalCard from './Modal';
 import {auth} from '../../config/firebase';
@@ -51,17 +52,19 @@ const useStyles = makeStyles((theme) => ({
 
 function Navigation() {
     const classes = useStyles();
-
+    const usertext1 =  'Hi \n '
+    const usertext2 =   '\n Good afternoon'
     const [searchInput, setSearchInput] = useState();
     const [modalStatus, setModalStatus] = useState(false);
      const [user, loading] =useAuthState(auth);
+
     // history.push()
     const history = useHistory();
 
     const handleModal = () => {
         setModalStatus(!modalStatus)
-    }
-
+    };
+    console.log('user is', user);
     return (
         <Section backgroundColor="Default">
             {/* Top Menu */}
@@ -187,7 +190,9 @@ function Navigation() {
                         md = {11}
                         display = "flex"
                         justifyContent = "end"
-                    >
+                    > 
+                     
+                    
                         {productCategorysData.map(productCategory => (
                             <TargetLink 
                                 to="/category"
@@ -200,6 +205,7 @@ function Navigation() {
                             </TargetLink>
                         ))}
                     </Column>
+                    
                     <Column md={1}>
                         <TargetLink
                             hoverColor = "Default"Default
@@ -207,8 +213,26 @@ function Navigation() {
                             display = "flex"
                             className="ml-3"
                         >
-                            Shikilia stores
+                            <HeaderContainer
+                    //TODO: Add user infor
+                    
+                    >
+                     <HeaderLeft>
+                     <HeaderAvatar
+                     //TODO: Add onclick
+                     onClick={()=> auth.signOut()}
+                      alt= {user?.displayName}
+                      src= {user?.photoURL}
+                      
+                     />
+                     < div className = "display-linebreak1">
+                     {usertext1}
+                     </div>                    
+                     </HeaderLeft>
+
+                    </HeaderContainer>
                         </TargetLink>
+                        
                     </Column>
                 </Rows>
             </Container>
@@ -216,4 +240,31 @@ function Navigation() {
     )
 }
 
-export default Navigation
+export default Navigation;
+
+// TODO: move these to styled components
+const HeaderContainer = styled.div`
+  display:flex; 
+//    position:fixed;
+//   width:100%;
+//   align-items:center;
+//   justify-content:space-between;
+//   padding:10px 0;
+`;
+const HeaderLeft = styled.div`
+flex:0.3;
+display:flex;
+align-items:center;
+margin-left:20px;
+ > .MuiSvgIcon-root{
+     margin-left:auto;
+     margine-right: 30px;
+ }
+`;
+const HeaderAvatar = styled(Avatar)`
+cursor: pointer;
+
+:hover {
+    opacity:0.8;
+}
+`;

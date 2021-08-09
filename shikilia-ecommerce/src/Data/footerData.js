@@ -36,17 +36,17 @@ export const aboutShikiliaData = [
     {
         id: 1,
         placeholder: 'About Shikilia',
-        routeTo: "/"
+        routeTo: "https://www.privacypolicygenerator.info/live.php?token=eReRIItPPA1JlbG84U2pjahErWzNyCg3"
     },
     {
         id: 2,
         placeholder: 'Terms and Conditions',
-        routeTo: "/"
+        routeTo: "https://www.privacypolicygenerator.info/live.php?token=eReRIItPPA1JlbG84U2pjahErWzNyCg3"
     },
     {
         id: 3,
         placeholder: 'Privacy Policy',
-        routeTo: "/"
+        routeTo: "https://www.privacypolicygenerator.info/live.php?token=eReRIItPPA1JlbG84U2pjahErWzNyCg3"
     }
 ];
 

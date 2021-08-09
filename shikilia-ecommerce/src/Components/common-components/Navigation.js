@@ -52,8 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Navigation() {
     const classes = useStyles();
-    const usertext1 =  'Hi \n '
-    const usertext2 =   '\n Good afternoon'
+
     const [searchInput, setSearchInput] = useState();
     const [modalStatus, setModalStatus] = useState(false);
      const [user, loading] =useAuthState(auth);
@@ -225,9 +224,7 @@ function Navigation() {
                       src= {user?.photoURL}
                       
                      />
-                     < div className = "display-linebreak1">
-                     {usertext1}
-                     </div>                    
+                     {user?.displayName}
                      </HeaderLeft>
 
                     </HeaderContainer>
@@ -263,7 +260,9 @@ margin-left:20px;
 `;
 const HeaderAvatar = styled(Avatar)`
 cursor: pointer;
-
+position: absolute
+right: 20px
+top: 5px
 :hover {
     opacity:0.8;
 }

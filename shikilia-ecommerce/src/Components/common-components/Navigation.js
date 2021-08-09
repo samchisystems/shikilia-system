@@ -163,6 +163,7 @@ function Navigation() {
                                                     !user? (
                                                         // setModalStatus(true)
                                                         // TODO: redirect to checkout instead of home
+                                                        // setModalStatus()
                                                         history.push("/")
                                                     ):(
                                                         // TODO: redirect to modal I  used thankyou incase there is a user 
@@ -224,7 +225,7 @@ function Navigation() {
                       src= {user?.photoURL}
                       
                      />
-                     {user?.displayName}
+                     Hi! {user?.displayName}
                      </HeaderLeft>
 
                     </HeaderContainer>

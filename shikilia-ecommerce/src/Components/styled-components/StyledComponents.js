@@ -84,7 +84,39 @@ export const Container = styled.div`
 `;
 
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+    display: ${({display}) => (
+        display === "flex" ? "flex" : "block"
+    )};
+    justify-content: ${({justifyContent}) => (
+        justifyContent === "start" ? "flex-start" : "center" &&
+        justifyContent === "end" ? "flex-end" : "center"
+    )};
+    align-items: ${({alignItems}) => (
+        alignItems === "center" ? "center" : "none"
+    )};
+    margin: ${({margin}) => (
+        margin === "1-0-0-0" ? "1rem 0rem 0rem 0rem" : "0rem 0rem 0rem 0rem" &&
+        margin === "1.5-0-0-0" ? "1.5rem 0rem 0rem 0rem" : "0rem 0rem 0rem 0rem" &&
+        margin === "1.5-0-3-0" ? "1.5rem 0rem 3rem 0rem" : "0rem 0rem 0rem 0rem" &&
+        margin === "5-0-0-15" ? "5rem 0rem 0rem 15rem" : "0rem 0rem 0rem 0rem" &&
+        margin === "10-0-0-15" ? "10rem 0rem 0rem 15rem" : "0rem 0rem 0rem 0rem" &&
+        margin === "0-0-0-1" ? "0rem 0rem 0rem 1rem" : "0rem 0rem 0rem 0rem" &&
+        margin === "3-0-0-0" ? "3rem 0rem 0rem 0rem" : "0rem 0rem 0rem 0rem" &&
+        margin === "5-0-0-0" ? "5rem 0rem 0rem 0rem" : "0rem 0rem 0rem 0rem" &&
+        margin === "8-0-0-0" ? "8rem 0rem 0rem 0rem" : "0rem 0rem 0rem 0rem"
+    )};
+    padding: ${({padding}) => (
+        padding === "0-1-0-1" ? "0rem 1rem 0rem 1rem" : "none"
+    )};
+
+    @media screen and (max-width: 768px){
+        display: ${({navigation}) => (
+            navigation ? "none" : "visible"
+        )};
+    }
+`;
+
 
 
 export const Title1 = styled.h1`
@@ -161,7 +193,7 @@ export const Placeholder = styled.p`
 export const Form = styled.form``;
 
 
-export const TargetLink = styled(Link)`
+export const TargetLink = styled.div`
     display: ${({display}) => (
         display === "flex" ? "flex" : "block" 
     )};
@@ -208,11 +240,32 @@ export const TargetLink = styled(Link)`
             hoverColor === "primary" ? "#5e72e4 !important" : "white !important"
         )};
         background: ${({hoverBackground}) => (
-            hoverBackground === "Default" ? "#172b4d !important" : "transparent" &&
-            hoverBackground === "primary" ? "#5e72e4 !important" : "transparent"
+            hoverBackground === "Default" ? "#ffffff !important" : "transparent" &&
+            hoverBackground === "primary" ? "#ffffff !important" : "transparent"
         )};
         transform: ${({transform}) => (
             transform ? "scale(1.01) !important" : ""
+        )};
+    }
+    color: ${({color})  => (
+        color === "white" ? "white" : "black" &&
+        color === "red" ? "#E50000" : "black"
+    )};
+    margin: ${({margin}) => (
+        margin === "0-1-0-1" ? "0rem 1rem 0rem 1rem" : "0rem 0rem 0rem 0rem"
+    )};
+    width: ${({width}) => (
+        width === "100%" ? "100%" : ""
+    )};
+    text-decoration: none;
+    cursor: pointer !important;
+    &:hover {
+        text-decoration: ${({decoration}) => (
+            decoration ? "underline !important" : "none !important"
+        )};
+        color: ${({hoverColor}) => (
+            hoverColor === "Default" ? "#E50000 !important" : "white !important" &&
+            hoverColor === "primary" ? "#313131 !important" : "white !important"
         )};
     }
 `;

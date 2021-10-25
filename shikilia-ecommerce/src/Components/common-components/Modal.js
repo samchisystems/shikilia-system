@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Image, Placeholder, TargetLink, Form, Rows, Buttons, Container, Modals, Column, Title1, Title3 } from '../styled-components/StyledComponents';
+import { Image, Placeholder, TargetLink, Form, Rows, Buttons, Link, Container, Modals, Column, Title1, Wrapper, Title3 } from '../styled-components/StyledComponents';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import CloseIcon from '@material-ui/icons/Close';
@@ -24,7 +24,7 @@ import FacebookProvider from '../../config/authMethods';
 import TwitterProvider from '../../config/authMethods';
 import GithubProvider from '../../config/authMethods';z
  */
-import {auth, provider} from '../../config/firebase';
+import {auth, googleprovider,facebookprovider} from '../../config/firebase';
 import {Button } from '@material-ui/core';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
@@ -49,11 +49,11 @@ const useStyles = makeStyles((theme) => ({
 
 function ModalCard({modal, status, onClose}) {
     const classes = useStyles();
-    const signIn = e => {
-        e.preventDefault();
-        auth.signInWithPopup(provider)
-        .catch(error =>alert(error.message))
-    };
+    // const signIn = e => {
+    //     e.preventDefault();
+    //     auth.signInWithPopup(provider)
+    //     .catch(error =>alert(error.message))
+    // };
     const signInWithGoogle = e => {
         e.preventDefault();
         auth.signInWithPopup(googleprovider).then(user =>{
@@ -235,20 +235,41 @@ function ModalCard({modal, status, onClose}) {
                                                 </Placeholder>
                                                 <Container>
                                                 <Wrapper display="flex" margin="1.5-0-0-0">
-                                        <Link width="100%">
-                                            {/* //TODO:user authentication */}
+                                                <TargetLink
+                                                    color="Default"
+                                                    hoverColor="primary"
+                                                    margin="1-0-0-0"
+                                                    onClick={() => {
+                                                        setOpen(!open)
+                                                        onClose()
+                                                        setModalType('signIn')
+                                                    }}
+                                                >
+                                                         {/* //TODO:user authentication */}
                                             <Buttons background="Default" width="100%" hoverBackground="Default" onClick={signInWithFacebook}>
                                             <FacebookIcon/>
                                                 Sign In with Facebook</Buttons>
-                                        </Link>
+                                                </TargetLink>
+                                        
                                     </Wrapper>
                                     <Wrapper display="flex" margin="1-0-0-0">
-                                        <Link width="100%">
-                                            <Buttons background="Default" width="100%" onClick={signInWithGoogle}>
+                                    <TargetLink
+                                                    color="Default"
+                                                    hoverColor="primary"
+                                                    margin="1-0-0-0"
+                                                    onClick={() => {
+                                                        setOpen(!open)
+                                                        onClose()
+                                                        setModalType('signIn')
+                                                    }}
+                                                >
+                                                    <Buttons background="Default" width="100%" onClick={signInWithGoogle}>
                                                 {/* <GoogleIcon/> */}
                                                 Sign In with Google
                                             </Buttons>
-                                        </Link>
+                                                </TargetLink>
+                                            
+                                        
                                     </Wrapper>
                                                 </Container>
                                             </Container>

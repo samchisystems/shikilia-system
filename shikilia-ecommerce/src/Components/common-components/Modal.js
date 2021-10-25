@@ -240,18 +240,6 @@ function ModalCard({modal, status, onClose}) {
                                                     margin='normal'
                                                     required
                                                     fullWidth
-                                                    id='name'
-                                                    label='Full Name'
-                                                    name='name'
-                                                    type='text'
-                                                    value={name}
-                                                    onChange={(e) => setName(e.target.value)}
-                                                />
-                                                <TextField
-                                                    className={classes.root}
-                                                    margin='normal'
-                                                    required
-                                                    fullWidth
                                                     id='email'
                                                     label='Email Address'
                                                     name='email'
@@ -271,18 +259,7 @@ function ModalCard({modal, status, onClose}) {
                                                     value={password}
                                                     onChange={(e) => setPassword(e.target.value)}
                                                 />
-                                                <TextField
-                                                    className={classes.root}
-                                                    margin='normal'
-                                                    required
-                                                    fullWidth
-                                                    id='confirmPassword'
-                                                    label='Confirm Password'
-                                                    name='confirmPassword'
-                                                    type='password'
-                                                    value={confirmPassword}
-                                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                                />
+                                                
 
                                                 <Container height="70">  
                                                     <FormControlLabel

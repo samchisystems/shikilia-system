@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/samchisystems/shikilia-system/issues"
   },
-  "homepage": "https://github.com/samchisystems/shikilia-system#readme"
+  "homepage": "https://github.com/samchisystems/shikilia-system#readme",
+  "dependencies": {
+    "react-scripts": "^4.0.3"
+  }
 }

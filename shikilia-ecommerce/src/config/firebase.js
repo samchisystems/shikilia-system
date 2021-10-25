@@ -1,4 +1,6 @@
-import firebase from 'firebase';
+import { firebase } from '@firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
 
 //firebase
 var firebaseApp = firebase.initializeApp({
@@ -18,18 +20,19 @@ var firebaseApp = firebase.initializeApp({
 //initialize firebase 
 var db = firebaseApp.firestore();
 var auth = firebase.auth();
-var provider= new firebase.auth.GoogleAuthProvider();
+var googleprovider= new firebase.auth.GoogleAuthProvider();
+var facebookprovider= new firebase.auth.FacebookAuthProvider();
 
 
 // allow sign in from anywhere
-export const signIn = e => {
-        e.preventDefault();
-        auth.signInWithPopup(provider)
-        .catch(error =>alert(error.message))
-    };
+// export const signIn = e => {
+//         e.preventDefault();
+//         auth.signInWithPopup(provider)
+//         .catch(error =>alert(error.message))
+//     };
 
 
-export  {auth, provider, db };
+export  {auth,  db, googleprovider, facebookprovider };
 
 
 // import React from "react";

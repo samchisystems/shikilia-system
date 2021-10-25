@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Image, Placeholder, TargetLink, Form, Rows, Buttons, Container, Modals, Column, Title1, Title3 } from '../styled-components/StyledComponents';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -54,7 +54,25 @@ function ModalCard({modal, status, onClose}) {
         auth.signInWithPopup(provider)
         .catch(error =>alert(error.message))
     };
-
+    const signInWithGoogle = e => {
+        e.preventDefault();
+        auth.signInWithPopup(googleprovider).then(user =>{
+            alert("welcome 👍 ");
+            console.log(user)
+        })
+        .catch(error =>alert(error.message))
+    };
+    const signInWithFacebook = e => {
+        e.preventDefault();
+        auth.signInWithPopup(facebookprovider).then(user =>{
+            alert("welcome 👍 ");
+            console.log(user)
+        })
+        .catch(error =>alert(error.message))
+    };
+    
+    const emailRef =useRef(null);
+    const passwordRef =useRef(null);
     const [open, setOpen] = useState(false);
     const [name, setName] = useState();
     const [email, setEmail] = useState();
@@ -65,6 +83,29 @@ function ModalCard({modal, status, onClose}) {
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const [privacyPolicy, setPrivacyPolicy] = useState(false);
+    const signUp = (e) => {
+        e.preventDefault();
+        // setSignUpLoading(true);
+        
+
+        auth.createUserWithEmailAndPassword(
+            emailRef.current.value,
+            passwordRef.current.value
+        ).then(user =>{
+            alert("user created 👍 ");
+            console.log(user)
+        }).catch(error =>{
+            alert(error.message)
+        });
+        // const signUpData = {
+        //     name: name,
+        //     email: email,
+        //     phoneNumber: phoneNumber,
+        //     password: password,
+        //     privacyPolicy: privacyPolicy
+        // }
+
+    }
 
 
     return (
@@ -193,9 +234,22 @@ function ModalCard({modal, status, onClose}) {
                                                     Sign In with:
                                                 </Placeholder>
                                                 <Container>
-                                                   <Button  onClick={signIn}>
-                                                            Sign In With Google 
-                                                            </Button>
+                                                <Wrapper display="flex" margin="1.5-0-0-0">
+                                        <Link width="100%">
+                                            {/* //TODO:user authentication */}
+                                            <Buttons background="Default" width="100%" hoverBackground="Default" onClick={signInWithFacebook}>
+                                            <FacebookIcon/>
+                                                Sign In with Facebook</Buttons>
+                                        </Link>
+                                    </Wrapper>
+                                    <Wrapper display="flex" margin="1-0-0-0">
+                                        <Link width="100%">
+                                            <Buttons background="Default" width="100%" onClick={signInWithGoogle}>
+                                                {/* <GoogleIcon/> */}
+                                                Sign In with Google
+                                            </Buttons>
+                                        </Link>
+                                    </Wrapper>
                                                 </Container>
                                             </Container>
                                         </Column>
@@ -242,6 +296,7 @@ function ModalCard({modal, status, onClose}) {
                                                     fullWidth
                                                     id='email'
                                                     label='Email Address'
+                                                    ref={emailRef}
                                                     name='email'
                                                     type='email'
                                                     value={email}
@@ -253,6 +308,7 @@ function ModalCard({modal, status, onClose}) {
                                                     required
                                                     fullWidth
                                                     id='password'
+                                                    ref={passwordRef}
                                                     label='Password'
                                                     name='password'
                                                     type='password'
@@ -282,6 +338,7 @@ function ModalCard({modal, status, onClose}) {
                                                         marginTop="1"
                                                         borderRadius="20"
                                                         width="100"
+                                                        onClick={signUp}
                                                     >
                                                         Sign Up
                                                     </Buttons>
